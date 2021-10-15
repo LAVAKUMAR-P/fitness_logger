@@ -5,15 +5,15 @@ export const NavbarData =[
         path:"#one",
     },
     {
-        title : "ABOUT",
+        title : "Register workout",
         path:"#two",
     },
     {
-        title : "SKILLS",
+        title : "BMI CALCULATOR",
         path:"#three",
     },
     {
-        title : "PROJECTS",
+        title : "Create Workout",
         path:"/teams",
     },
 ]
