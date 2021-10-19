@@ -1,27 +1,54 @@
-import React from 'react'
-import './Login.css';
+import React, { useState } from "react";
+import "./Login.css";
 function Login() {
-    return (
-        <div>
-            <div className="L-loginContainer">
-                
-                <div>
-                    <form>
-                             <div>
-                             LOGIN
-                              </div>
-                        <label for="user_Mailid" id="mail">Enter emailid</label><br/>
-                        <input type="mail"></input><br/>
-                        <label for="password">Password</label><br/>
-                        <input type="password" id="password"></input><br/>
-                        <label for="conform_password">Password</label><br/>
-                        <input type="password" id="conform_password"></input><br/>
-                        <input type="submit" value="Sign in" />
-                    </form>
-                </div>
+    const [username, setusername] = useState("");
+    const [password, setpassword] = useState("");
+    let handleSubmit= async (e)=>{
+        e.preventDefault();
+        try {
+            console.log(username,password);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+  return (
+    <div>
+      <div className="L-loginContainer">
+        <div className="L-content">
+          <form onSubmit={handleSubmit}>
+            <div className="L-login-title">LOGIN</div>
+            <label htmlFor="user_Mailid" id="mail">
+              Enter email
+            </label>
+            <br />
+            <input
+              type="email"
+              placeholder="Your Email-ID"
+              className="L-input"
+              value={username}
+              onChange={e => setusername(e.target.value)}
+            
+            ></input>
+            <br />
+            <label htmlFor="password">Password</label>
+            <br/>
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              className="L-input"
+              value={password}
+              onChange={e =>setpassword(e.target.value)}
+            ></input>
+            <br />
+            <div className="L-login-title">
+            <input  className="L-sign" type="submit" value="Sign in" />
             </div>
+          </form>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Login
+export default Login;
