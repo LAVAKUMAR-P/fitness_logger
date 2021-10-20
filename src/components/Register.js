@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import "./Register.css";
 function Register() {
     const [Name,setName] = useState("");
     const [username, setusername] = useState("");
@@ -15,10 +15,10 @@ function Register() {
     }
     return (
         <div>
-        <div className="L-loginContainer">
-        <div className="L-content">
+        <div className="R-loginContainer">
+        <div className="R-content">
           <form onSubmit={handleSubmit}>
-            <div className="L-login-title">Register</div>
+            <div className="R-login-title">Register</div>
             <label htmlFor="user_Mailid" id="mail">
               Enter Name
             </label>
@@ -26,11 +26,11 @@ function Register() {
             <input
               type="text"
               placeholder="Your Name"
-              className="L-input"
+              className="R-input"
               value={Name}
               onChange={e => setName(e.target.value)}
             
-            ></input>
+            ></input><br/>
             <label htmlFor="user_Mailid" id="mail">
               Enter email
             </label>
@@ -38,7 +38,7 @@ function Register() {
             <input
               type="email"
               placeholder="Your Email-ID"
-              className="L-input"
+              className="R-input"
               value={username}
               onChange={e => setusername(e.target.value)}
             
@@ -50,24 +50,24 @@ function Register() {
               type="password"
               placeholder="Password"
               id="password"
-              className="L-input"
+              className="R-input"
               value={password}
               onChange={e =>setpassword(e.target.value)}
             ></input>
             <br />
-            <label htmlFor="password">Conform Password</label>
+            <label htmlFor="C-password">Conform Password</label>
             <br/>
             <input
               type="password"
               placeholder="Conform Password"
-              id="password"
-              className="L-input"
+              id="C-password"
+              className="R-input"
               value={conform}
               onChange={e =>setconform(e.target.value)}
             ></input>
             <br />
-            <div className="L-login-title">
-            <input  className="L-sign" type="submit" value="Sign in" />
+            <div className="R-login-title">
+            <input  className="R-sign" type="submit" value="Register" />
             </div>
           </form>
         </div>
