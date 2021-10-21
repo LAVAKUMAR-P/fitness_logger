@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 function Login() {
     const [username, setusername] = useState("");
@@ -47,6 +48,7 @@ function Login() {
           </form>
         </div>
       </div>
+      <Link to="/workout"><button>next</button></Link>
     </div>
   );
 }

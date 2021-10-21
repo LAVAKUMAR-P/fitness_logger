@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import "./Register.css";
 function Register() {
     const [Name,setName] = useState("");
@@ -55,11 +56,11 @@ function Register() {
               onChange={e =>setpassword(e.target.value)}
             ></input>
             <br />
-            <label htmlFor="C-password">Conform Password</label>
+            <label htmlFor="C-password">Confirm Password</label>
             <br/>
             <input
               type="password"
-              placeholder="Conform Password"
+              placeholder="Confirm Password"
               id="C-password"
               className="R-input"
               value={conform}
@@ -72,6 +73,7 @@ function Register() {
           </form>
         </div>
       </div>
+      <Link to="/login"><button>next</button></Link>
         </div>
     )
 }

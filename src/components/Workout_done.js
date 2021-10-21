@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import './Workout_done.css';
 
 function Workout_done() {
@@ -87,6 +88,7 @@ function Workout_done() {
           </form>
         </div>
       </div>
+      <Link to="/"><button>next</button></Link>
     </div>
   );
 }
