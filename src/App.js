@@ -1,5 +1,4 @@
 import './App.css';
-import Home from './components/Home';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Register from './components/Register';
@@ -10,6 +9,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Bmicalc from './components/Bmicalc';
 function App() {
   return (
     <>
@@ -19,6 +19,7 @@ function App() {
          <Route path="/" component={Register} exact={true}/>
          <Route path="/login" component={Login} exact={true}/>
          <Route path="/workout" component={Workout_done} exact={true}/>
+         <Route path="/bmicalc" component={Bmicalc} exact={true}/>
      </Switch>
      </Router>
     </>

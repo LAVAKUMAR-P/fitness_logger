@@ -88,7 +88,7 @@ function Workout_done() {
           </form>
         </div>
       </div>
-      <Link to="/"><button>next</button></Link>
+      <Link to="/bmicalc"><button>next</button></Link>
     </div>
   );
 }
