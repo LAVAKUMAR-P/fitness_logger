@@ -3,10 +3,11 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Register from './components/Register';
+import Workout_done from './components/Workout_done';
 function App() {
   return (
     <div>
-     <Register/>
+     <Workout_done/>
     </div>
   );
 }
