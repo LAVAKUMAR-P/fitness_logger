@@ -1,6 +1,15 @@
 * {
     box-sizing:border-box;
 }
+/*BACKGROUNG IMAGE CSS*/
+.image {
+    background: rgba(0, 0, 0, 0.7) url("./images/home.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+    height: 100vh;
+  }
 
 .L-loginContainer{
     display: grid;

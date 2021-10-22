@@ -15,7 +15,7 @@ function Login() {
       .required('Password is required'),
   })
   return (
-    <div>
+    <div className="image">
        <Navbar_login/>
           <Formik
       initialValues={{
