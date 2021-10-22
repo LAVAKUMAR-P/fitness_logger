@@ -1,10 +1,10 @@
-.W-loginContainer{
+.WD-loginContainer{
     display: grid;
     place-items: center;
     height: 100vh;
 }
 
-.W-content{
+.WD-content{
     display: grid;
     place-items: center;
     width: 300px;
@@ -13,7 +13,7 @@
     border-radius: 0.5em;
    /* background-color:rgba(0, 0, 0, 0.7); */
 }
-.W-input{
+.WD-input{
     width:250px;
     padding:10px;
     margin: 0.5em;
@@ -25,18 +25,18 @@
     box-shadow: 0 0 10px #8db4dd;
 }
 
-.W-input:hover{
+.WD-input:hover{
     border:1px solid rgb(77, 10, 231);
     box-shadow: 0 0 10px #1171d8;
 }
 
-.W-login-title{
+.WD-login-title{
     display: flex;
     justify-content: center;
     margin-bottom: 0.5em;
 }
 
-.W-sign{
+.WD-sign{
     padding: 0.5em 2em 0.5em 2em;
     margin: 0.5em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -48,7 +48,7 @@
     border: none;
 }
 
-.W-sign:hover{
+.WD-sign:hover{
     background-color: rgba(20, 20, 143, 0.774);
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);

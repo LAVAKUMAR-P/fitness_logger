@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import "./Bmicalc.css";
 function Bmicalc() {
   const [Height, setHeight] = useState("");
   const [Weight, setWeight] = useState("");
@@ -66,7 +66,7 @@ function Bmicalc() {
               <input className="W-sign" type="submit" value="Calculate" />
             </div>
             {bmiResult && (
-              <div className="mt-4">
+              <div>
                 <p>Your BMI is: {bmiResult} </p>
                 <p>You are currently: {status}</p>
                 <button className="W-sign" onClick={clearValue}>

@@ -20,10 +20,10 @@ function Workout_done() {
     }
   return (
     <div>
-      <div className="W-loginContainer">
-        <div className="W-content">
+      <div className="WD-loginContainer">
+        <div className="WD-content">
           <form onSubmit={handleSubmit}>
-            <div className="W-login-title">Workout Out</div>
+            <div className="WD-login-title">Workout Out</div>
             <label htmlFor="work" >
               Enter Workout Name
             </label>
@@ -32,7 +32,7 @@ function Workout_done() {
               id="work"
               type="text"
               placeholder="Your Name"
-              className="W-input"
+              className="WD-input"
               value={Name}
               onChange={(e) => setName(e.target.value)}
             ></input>
@@ -45,7 +45,7 @@ function Workout_done() {
             id="activity"
               type="text"
               placeholder="Type of activity"
-              className="W-input"
+              className="WD-input"
               value={activity}
               onChange={(e) => setactivity(e.target.value)}
             ></input>
@@ -57,7 +57,7 @@ function Workout_done() {
               type="time"
               placeholder="start time"
               id="Time"
-              className="W-input"
+              className="WD-input"
               value={Time}
               onChange={(e) => setTime(e.target.value)}
             ></input>
@@ -66,7 +66,7 @@ function Workout_done() {
               type="time"
               placeholder="end time"
               id="Timeto"
-              className="W-input"
+              className="WD-input"
               value={Timeto}
               onChange={(e) => setTimeto(e.target.value)}
             ></input>
@@ -77,13 +77,13 @@ function Workout_done() {
               type="comment"
               placeholder="Comments"
               id="Comments"
-              className="W-input"
+              className="WD-input"
               value={Comments}
               onChange={(e) => setComments(e.target.value)}
             ></input>
             <br />
-            <div className="W-login-title">
-              <input className="W-sign" type="submit" value="Submit" />
+            <div className="WD-login-title">
+              <input className="WD-sign" type="submit" value="Submit" />
             </div>
           </form>
         </div>

@@ -25,6 +25,18 @@
     box-shadow: 0 0 10px #8db4dd;
 }
 
+.L-input2{
+    width:250px;
+    padding:10px;
+    margin: 0.5em;
+    border-radius: 5px;
+    font-family:inherit;
+    font-size: inherit;
+    outline: none;
+    border:1px solid rgb(207, 9, 9);
+    box-shadow: 0 0 10px #f30b0b;
+}
+
 .R-input:hover{
     border:1px solid rgb(77, 10, 231);
     box-shadow: 0 0 10px #1171d8;

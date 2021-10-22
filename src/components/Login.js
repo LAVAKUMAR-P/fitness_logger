@@ -1,55 +1,49 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import * as Yup from 'yup';
+import { Formik, Form } from 'formik';
 import "./Login.css";
+import Textfield_login from "./Textfield_login";
+import { Link } from 'react-router-dom';
 function Login() {
-    const [username, setusername] = useState("");
-    const [password, setpassword] = useState("");
-    let handleSubmit= async (e)=>{
-        e.preventDefault();
-        try {
-            console.log(username,password);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+  const validate = Yup.object({
+    email: Yup.string()
+      .email('Email is invalid')
+      .required('Email is required'),
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 charaters')
+      .required('Password is required'),
+  })
   return (
     <div>
+          <Formik
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      validationSchema={validate}
+      onSubmit={values => {
+        console.log(values)
+      }}
+    >{formik => (
+      
       <div className="L-loginContainer">
         <div className="L-content">
-          <form onSubmit={handleSubmit}>
-            <div className="L-login-title">LOGIN</div>
-            <label htmlFor="user_Mailid" id="mail">
-              Enter email
-            </label>
-            <br />
-            <input
-              type="email"
-              placeholder="Your Email-ID"
-              className="L-input"
-              value={username}
-              onChange={e => setusername(e.target.value)}
-            
-            ></input>
-            <br />
-            <label htmlFor="password">Password</label>
-            <br/>
-            <input
-              type="password"
-              placeholder="Password"
-              id="password"
-              className="L-input"
-              value={password}
-              onChange={e =>setpassword(e.target.value)}
-            ></input>
-            <br />
-            <div className="L-login-title">
-            <input  className="L-sign" type="submit" value="Sign in" />
-            </div>
-          </form>
+        <div className="L-login-title">Register</div>
+          <Form>
+            <Textfield_login label="Email" name="email" type="email" />
+            <Textfield_login label="password" name="password" type="password" />
+            <button className="L-sign" type="submit">Register</button>
+            <button className="L-sign" type="reset">Reset</button>
+          </Form>
+          
         </div>
       </div>
+    )}
+        
+      
+      </Formik>
       <Link to="/workout"><button>next</button></Link>
-    </div>
+        </div>
   );
 }
 

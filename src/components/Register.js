@@ -1,78 +1,62 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import "./Register.css";
+import Textfileld_register from './Textfileld_register';
 function Register() {
-    const [Name,setName] = useState("");
-    const [username, setusername] = useState("");
-    const [password, setpassword] = useState("");
-    const [conform,setconform] = useState("");
-    let handleSubmit= async (e)=>{
-        e.preventDefault();
-        try {
-            console.log(Name,username,password,conform);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+  const validate = Yup.object({
+    firstName: Yup.string()
+      .max(15, 'Must be 15 characters or less')
+      .required('Required'),
+    lastName: Yup.string()
+      .max(20, 'Must be 20 characters or less')
+      .required('Required'),
+    email: Yup.string()
+      .email('Email is invalid')
+      .required('Email is required'),
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 charaters')
+      .required('Password is required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Password must match')
+      .required('Confirm password is required'),
+  })
     return (
         <div>
-        <div className="R-loginContainer">
+          <Formik
+      initialValues={{
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      }}
+      validationSchema={validate}
+      onSubmit={values => {
+        console.log(values)
+      }}
+    >{formik => (
+      
+      <div className="R-loginContainer">
         <div className="R-content">
-          <form onSubmit={handleSubmit}>
-            <div className="R-login-title">Register</div>
-            <label htmlFor="user_Mailid" id="mail">
-              Enter Name
-            </label>
-            <br />
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="R-input"
-              value={Name}
-              onChange={e => setName(e.target.value)}
-            
-            ></input><br/>
-            <label htmlFor="user_Mailid" id="mail">
-              Enter email
-            </label>
-            <br />
-            <input
-              type="email"
-              placeholder="Your Email-ID"
-              className="R-input"
-              value={username}
-              onChange={e => setusername(e.target.value)}
-            
-            ></input>
-            <br />
-            <label htmlFor="password">Password</label>
-            <br/>
-            <input
-              type="password"
-              placeholder="Password"
-              id="password"
-              className="R-input"
-              value={password}
-              onChange={e =>setpassword(e.target.value)}
-            ></input>
-            <br />
-            <label htmlFor="C-password">Confirm Password</label>
-            <br/>
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              id="C-password"
-              className="R-input"
-              value={conform}
-              onChange={e =>setconform(e.target.value)}
-            ></input>
-            <br />
-            <div className="R-login-title">
-            <input  className="R-sign" type="submit" value="Register" />
-            </div>
-          </form>
+        <div className="R-login-title">Register</div>
+          <Form>
+            <Textfileld_register label="First Name" name="firstName" type="text" />
+            <Textfileld_register label="last Name" name="lastName" type="text" />
+            <Textfileld_register label="Email" name="email" type="email" />
+            <Textfileld_register label="password" name="password" type="password" />
+            <Textfileld_register label="Confirm Password" name="confirmPassword" type="password" /> 
+            <button className="R-sign" type="submit">Register</button>
+            <button className="R-sign" type="reset">Reset</button>
+          </Form>
+          
         </div>
       </div>
+    )}
+        
+      
+      </Formik>
       <Link to="/login"><button>next</button></Link>
         </div>
     )
