@@ -34,8 +34,8 @@ function Login() {
           <Form>
             <Textfield_login label="Email" name="email" type="email" />
             <Textfield_login label="password" name="password" type="password" />
-            <button className="L-sign" type="submit">Register</button>
-            <button className="L-sign" type="reset">Reset</button>
+            <button className="L-buttons" type="submit">Register</button>
+            <button className="L-buttons" type="reset">Reset</button>
           </Form>
           
         </div>
