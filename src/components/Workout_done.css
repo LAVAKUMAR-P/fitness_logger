@@ -1,9 +1,16 @@
-.WD-loginContainer{
+/*BACKGROUNG IMAGE CSS*/
+.image {
+    background: rgba(0, 0, 0, 0.7) url("./images/home.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-blend-mode: darken;
     display: grid;
     place-items: center;
     height: 100vh;
-}
+  }
 
+/*css for content*/
 .WD-content{
     display: grid;
     place-items: center;
@@ -13,6 +20,8 @@
     border-radius: 0.5em;
    /* background-color:rgba(0, 0, 0, 0.7); */
 }
+
+/*css for input fields*/
 .WD-input{
     width:250px;
     padding:10px;
@@ -24,6 +33,8 @@
     border:1px solid rgb(111, 68, 212);
     box-shadow: 0 0 10px #8db4dd;
 }
+
+/*css for input field change red*/ 
 .WD-input2{
     width:250px;
     padding:10px;
@@ -40,13 +51,16 @@
     box-shadow: 0 0 10px #1171d8;
 }
 
-.WD-login-title{
+
+/* css for work out title*/
+.WD-Workout-title{
     display: flex;
     justify-content: center;
     margin-bottom: 0.5em;
 }
 
-.WD-sign{
+/*css for buttons*/
+.WD-buttons{
     padding: 0.5em 2em 0.5em 2em;
     margin: 0.5em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -58,7 +72,7 @@
     border: none;
 }
 
-.WD-sign:hover{
+.WD-buttons:hover{
     background-color: rgba(20, 20, 143, 0.774);
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);

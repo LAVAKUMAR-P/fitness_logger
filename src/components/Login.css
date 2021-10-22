@@ -5,18 +5,13 @@
 .image {
     background: rgba(0, 0, 0, 0.7) url("./images/home.jpg");
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat !important;
     background-size: cover;
     background-blend-mode: darken;
-    height: 100vh;
-  }
-
-/*css for container or over all card*/ 
-.L-loginContainer{
     display: grid;
     place-items: center;
     height: 100vh;
-}
+  }
 
 .L-content{
     display: grid;
@@ -67,7 +62,7 @@
     border: none;
 }
 
-.L-sign:hover{
+.L-buttons:hover{
     background-color: rgba(20, 20, 143, 0.774);
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);

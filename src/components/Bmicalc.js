@@ -7,10 +7,13 @@ import Textfield_bmical from "./Textfield_bmical";
 import Navbar from "./Navbar";
 
 function Bmicalc() {
+
   const validate = Yup.object({
     height: Yup.number().required("height is required"),
     weight: Yup.number().required("weight is required"),
   });
+
+  
   const [Height, setHeight] = useState("");
   const [Weight, setWeight] = useState("");
   const [bmiResult, setBmiResult] = useState(null);
@@ -43,51 +46,63 @@ function Bmicalc() {
   };
 
   return (
-    <div>
-       <Navbar/>
-      <Formik
-        initialValues={{
-          height: "",
-          weight: "",
-        }}
-        validationSchema={validate}
-        onSubmit={(values) => {
-          setHeight(values.height);
-          setWeight(values.weight);
-          handleSubmit();
-        }}
-      >
-        {(formik) => (
-          <div className="W-loginContainer">
-            <div className="W-content">
-              <div className="L-login-title">BMI Calculator</div>
-              <Form>
-                <Textfield_bmical label="Height" name="height" type="text" />
-                <Textfield_bmical label="Weight" name="weight" type="text" />
-                <button className="L-sign" type="submit">
-                  Calculate
-                </button>
-                <button className="L-sign" type="reset">
-                  Reset
-                </button>
-                {bmiResult && (
-                  <div>
-                    <p>Your BMI is: {bmiResult} </p>
-                    <p>You are currently: {status}</p>
-                    <button className="W-sign" onClick={clearValue}>
-                      Clere
+    <>
+      <Navbar />
+      <div className="image">
+        <div>
+          <Formik
+            initialValues={{
+              height: "",
+              weight: "",
+            }}
+            validationSchema={validate}
+            onSubmit={(values) => {
+              setHeight(values.height);
+              setWeight(values.weight);
+              handleSubmit();
+            }}
+          >
+            {(formik) => (
+              <div className="W-loginContainer">
+                <div className="W-content">
+                  <div className="L-bmi-title">BMI Calculator</div>
+                  <Form>
+                    <Textfield_bmical
+                      label="Height"
+                      name="height"
+                      type="text"
+                    />
+                    <Textfield_bmical
+                      label="Weight"
+                      name="weight"
+                      type="text"
+                    />
+                    <button className="W-buttons" type="submit">
+                      Calculate
                     </button>
-                  </div>
-                )}
-              </Form>
-            </div>
-          </div>
-        )}
-      </Formik>
-      <Link to="/">
-        <button>next</button>
-      </Link>
-    </div>
+                    <button className="W-buttons" type="reset">
+                      Reset
+                    </button>
+                    {bmiResult && (
+                      <div>
+                        <p>Your BMI is: {bmiResult} </p>
+                        <p>You are currently: {status}</p>
+                        <button className="W-sign" onClick={clearValue}>
+                          Clere
+                        </button>
+                      </div>
+                    )}
+                  </Form>
+                </div>
+              </div>
+            )}
+          </Formik>
+          <Link to="/">
+            <button className="W-buttons">next</button>
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }
 

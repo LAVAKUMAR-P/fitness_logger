@@ -1,9 +1,16 @@
-.R-loginContainer{
+/*BACKGROUNG IMAGE CSS*/
+.image {
+    background: rgba(0, 0, 0, 0.7) url("./images/home.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-blend-mode: darken;
     display: grid;
     place-items: center;
     height: 100vh;
-}
+  }
 
+/*content inside container*/
 .R-content{
     display: grid;
     place-items: center;
@@ -13,6 +20,8 @@
     border-radius: 0.5em;
    /* background-color:rgba(0, 0, 0, 0.7); */
 }
+
+/*css for input fields*/
 .R-input{
     width:250px;
     padding:10px;
@@ -25,6 +34,7 @@
     box-shadow: 0 0 10px #8db4dd;
 }
 
+/* css for input field make red*/
 .L-input2{
     width:250px;
     padding:10px;
@@ -48,7 +58,8 @@
     margin-bottom: 0.5em;
 }
 
-.R-sign{
+/* css for buttons*/
+.R-buttons{
     padding: 0.5em 2em 0.5em 2em;
     margin: 0.5em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -60,7 +71,7 @@
     border: none;
 }
 
-.R-sign:hover{
+.R-buttons:hover{
     background-color: rgba(20, 20, 143, 0.774);
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);

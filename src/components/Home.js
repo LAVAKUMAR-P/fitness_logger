@@ -5,8 +5,9 @@ import Navbar_login from './Navbar_login';
 
 function Home() {
     return (
-        <div className="image">
-            <Navbar_login/>
+        <>
+        <Navbar_login/>
+        <div>
             <div>
                 <h2>hi guys</h2>
                 <Link to="/register">
@@ -14,6 +15,7 @@ function Home() {
       </Link>
             </div>
         </div>
+        </>
     )
 }
 

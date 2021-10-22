@@ -1,9 +1,16 @@
-.W-loginContainer{
+/*BACKGROUNG IMAGE CSS*/
+.image {
+    background: rgba(0, 0, 0, 0.7) url("./images/home.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-blend-mode: darken;
     display: grid;
     place-items: center;
     height: 100vh;
-}
+  }
 
+/*content in that container*/
 .W-content{
     display: grid;
     place-items: center;
@@ -13,6 +20,8 @@
     border-radius: 0.5em;
    /* background-color:rgba(0, 0, 0, 0.7); */
 }
+
+/*css for input fields*/
 .W-input{
     width:250px;
     padding:10px;
@@ -42,13 +51,15 @@
     box-shadow: 0 0 10px #1171d8;
 }
 
-.W-login-title{
+/* css for title in that card*/
+.W-bmi-title{
     display: flex;
     justify-content: center;
     margin-bottom: 0.5em;
 }
 
-.W-sign{
+/*css for buttons*/
+.W-buttons{
     padding: 0.5em 2em 0.5em 2em;
     margin: 0.5em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -60,7 +71,7 @@
     border: none;
 }
 
-.W-sign:hover{
+.W-buttons:hover{
     background-color: rgba(20, 20, 143, 0.774);
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
