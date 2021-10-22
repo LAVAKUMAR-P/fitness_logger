@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './Navbar.css'
 import * as AiIcons from "react-icons/ai";
 import {NavbarData} from './Navbardata';
+import { Link } from 'react-router-dom';
 export default function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
@@ -32,7 +33,7 @@ export default function Navbar() {
         {
           NavbarData.map((data,index)=>{
             return(
-              <a href={data.path} className="items" onClick={toggleNav}>{data.title}</a>
+              <Link to={data.path} className="items" onClick={toggleNav}>{data.title}</Link>
             )
           })
         }

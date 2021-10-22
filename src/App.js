@@ -10,13 +10,15 @@ import {
   Link
 } from "react-router-dom";
 import Bmicalc from './components/Bmicalc';
+import Home from './components/Home';
 function App() {
   return (
     <>
     <Router>
       <Navbar/>
       <Switch>
-         <Route path="/" component={Register} exact={true}/>
+         <Route path="/" component={Home} exact={true}/>
+         <Route path="/register" component={Register} exact={true}/>
          <Route path="/login" component={Login} exact={true}/>
          <Route path="/workout" component={Workout_done} exact={true}/>
          <Route path="/bmicalc" component={Bmicalc} exact={true}/>

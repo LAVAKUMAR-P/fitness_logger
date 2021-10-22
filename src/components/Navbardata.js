@@ -2,18 +2,18 @@
 export const NavbarData =[
     {
         title : "Home",
-        path:"#one",
+        path:"/",
     },
     {
         title : "Register workout",
-        path:"#two",
+        path:"/workout",
     },
     {
         title : "BMI CALCULATOR",
-        path:"#three",
+        path:"/bmicalc",
     },
     {
-        title : "Create Workout",
+        title : "Workout History",
         path:"/teams",
     },
 ]

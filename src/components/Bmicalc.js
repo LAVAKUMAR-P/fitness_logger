@@ -58,7 +58,7 @@ function Bmicalc() {
         {(formik) => (
           <div className="W-loginContainer">
             <div className="W-content">
-              <div className="L-login-title">Register</div>
+              <div className="L-login-title">BMI Calculator</div>
               <Form>
                 <Textfield_bmical label="Height" name="height" type="text" />
                 <Textfield_bmical label="Weight" name="weight" type="text" />
@@ -82,7 +82,7 @@ function Bmicalc() {
           </div>
         )}
       </Formik>
-      <Link to="/workout">
+      <Link to="/">
         <button>next</button>
       </Link>
     </div>
