@@ -7,19 +7,28 @@ import Textfield_bmical from "./Textfield_bmical";
 import Navbar from "./Navbar";
 
 function Bmicalc() {
+  const [Height, setHeight] = useState("");
+  const [Weight, setWeight] = useState("");
+  const [bmiResult, setBmiResult] = useState(null);
+  const [status, setStatus] = useState("");
 
   const validate = Yup.object({
     height: Yup.number().required("height is required"),
     weight: Yup.number().required("weight is required"),
   });
 
-  
-  const [Height, setHeight] = useState("");
-  const [Weight, setWeight] = useState("");
-  const [bmiResult, setBmiResult] = useState(null);
-  const [status, setStatus] = useState("");
 
-  let handleSubmit = async () => {
+  let handleSubmit = async (value) => {
+    let values=await value;
+    console.log(values);
+    await setHeight(values.height);
+    let data_height= await values.height;
+    let data_weight= await  values.weight;
+    console.log(data_height+  data_weight)
+    
+    setWeight(data_weight);
+    console.log(Weight+"from handle submit");
+    console.log(Height +"from handle submit")
     try {
       let bmi = Number(Weight / (Height / 100) ** 2).toFixed(2);
       setBmiResult(bmi);
@@ -57,9 +66,16 @@ function Bmicalc() {
             }}
             validationSchema={validate}
             onSubmit={(values) => {
-              setHeight(values.height);
-              setWeight(values.weight);
-              handleSubmit();
+              let data_height=values.height;
+              let data_weight=values.weight;
+              setHeight(100);
+              setWeight(50);
+              console.log(values);
+              console.log(data_weight);
+              console.log(data_height);
+              console.log(Weight+"from useste");
+              console.log(Height +"from usestate")
+              handleSubmit(values);
             }}
           >
             {(formik) => (
@@ -87,7 +103,7 @@ function Bmicalc() {
                       <div>
                         <p>Your BMI is: {bmiResult} </p>
                         <p>You are currently: {status}</p>
-                        <button className="W-sign" onClick={clearValue}>
+                        <button className="W-buttons" onClick={clearValue}>
                           Clere
                         </button>
                       </div>
