@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import "./Login.css";
 import Textfield_login from "./Textfield_login";
 import { Link } from 'react-router-dom';
+import Navbar_login from "./Navbar_login";
 function Login() {
   const validate = Yup.object({
     email: Yup.string()
@@ -15,6 +16,7 @@ function Login() {
   })
   return (
     <div>
+       <Navbar_login/>
           <Formik
       initialValues={{
         email: '',
@@ -28,7 +30,7 @@ function Login() {
       
       <div className="L-loginContainer">
         <div className="L-content">
-        <div className="L-login-title">Register</div>
+        <div className="L-login-title">Login</div>
           <Form>
             <Textfield_login label="Email" name="email" type="email" />
             <Textfield_login label="password" name="password" type="password" />

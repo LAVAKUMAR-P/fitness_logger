@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import "./Register.css";
 import Textfileld_register from './Textfileld_register';
+import Navbar_login from './Navbar_login';
 function Register() {
   const validate = Yup.object({
     firstName: Yup.string()
@@ -24,6 +25,7 @@ function Register() {
   })
     return (
         <div>
+          <Navbar_login/>
           <Formik
       initialValues={{
         firstName: '',

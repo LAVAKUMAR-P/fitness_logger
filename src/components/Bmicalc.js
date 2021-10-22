@@ -4,6 +4,7 @@ import "./Bmicalc.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Textfield_bmical from "./Textfield_bmical";
+import Navbar from "./Navbar";
 
 function Bmicalc() {
   const validate = Yup.object({
@@ -43,6 +44,7 @@ function Bmicalc() {
 
   return (
     <div>
+       <Navbar/>
       <Formik
         initialValues={{
           height: "",

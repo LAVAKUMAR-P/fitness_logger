@@ -1,6 +1,5 @@
 import './App.css';
 import Login from './components/Login';
-import Navbar from './components/Navbar';
 import Register from './components/Register';
 import Workout_done from './components/Workout_done';
 import {
@@ -15,7 +14,6 @@ function App() {
   return (
     <>
     <Router>
-      <Navbar/>
       <Switch>
          <Route path="/" component={Home} exact={true}/>
          <Route path="/register" component={Register} exact={true}/>

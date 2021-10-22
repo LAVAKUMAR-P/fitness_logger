@@ -1,0 +1,19 @@
+.list2 {
+    list-style-type: none;
+    background:  hsla(230, 69%, 55%, 0.83);
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: relative;
+}
+
+@media screen and (max-width: 500px){
+
+    .list2 {
+        flex-direction: column;
+        height: auto;
+    }
+
+}
+

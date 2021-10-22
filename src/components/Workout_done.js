@@ -4,6 +4,7 @@ import "./Workout_done.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Textfield_workout from "./Textfield_workout.js";
+import Navbar from "./Navbar";
 
 function Workout_done() {
   const validate = Yup.object({
@@ -18,6 +19,7 @@ function Workout_done() {
   });
   return (
     <div>
+       <Navbar/>
       <Formik
         initialValues={{
           name: "",
