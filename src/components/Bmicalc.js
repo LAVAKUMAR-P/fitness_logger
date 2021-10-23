@@ -1,53 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Bmicalc.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Textfield_bmical from "./Textfield_bmical";
 import Navbar from "./Navbar";
+import { useState } from "react/cjs/react.development";
 
 function Bmicalc() {
-  const [Height, setHeight] = useState("");
-  const [Weight, setWeight] = useState("");
+
+  const validate = Yup.object({
+    your_height: Yup.number().required("height is required"),
+    your_weight: Yup.number().required("weight is required"),
+  });
+
   const [bmiResult, setBmiResult] = useState(null);
   const [status, setStatus] = useState("");
 
-  const validate = Yup.object({
-    height: Yup.number().required("height is required"),
-    weight: Yup.number().required("weight is required"),
-  });
 
-
-  let handleSubmit = async (value) => {
-    let values=await value;
-    console.log(values);
-    await setHeight(values.height);
-    let data_height= await values.height;
-    let data_weight= await  values.weight;
-    console.log(data_height+  data_weight)
-    
-    setWeight(data_weight);
-    console.log(Weight+"from handle submit");
-    console.log(Height +"from handle submit")
-    try {
-      let bmi = Number(Weight / (Height / 100) ** 2).toFixed(2);
-      setBmiResult(bmi);
-      let bmiStatus = getStatus(bmi);
-      setStatus(bmiStatus);
-      setHeight("");
-      setWeight("");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getStatus = (bmi) => {
-    if (bmi < 18.5) return "Underweight";
-    else if (bmi >= 18.5 && bmi < 24.9) return "Normal";
-    else if (bmi >= 25 && bmi < 29.9) return "Overweight";
-    else if (bmi === "NaN") return "Enter right value";
-    else return "Obese";
-  };
 
   const clearValue = () => {
     setBmiResult(null);
@@ -61,37 +31,37 @@ function Bmicalc() {
         <div>
           <Formik
             initialValues={{
-              height: "",
-              weight: "",
+              your_height: "",
+              your_weight: "",
             }}
             validationSchema={validate}
-            onSubmit={(values) => {
-              let data_height=values.height;
-              let data_weight=values.weight;
-              setHeight(100);
-              setWeight(50);
-              console.log(values);
-              console.log(data_weight);
-              console.log(data_height);
-              console.log(Weight+"from useste");
-              console.log(Height +"from usestate")
-              handleSubmit(values);
+            onSubmit={ (values) => {
+             console.log(values.your_weight)
+             console.log(values.your_height);
+             let bmi = Number(values.your_weight / (values.your_height / 100) ** 2).toFixed(2);
+             setBmiResult(bmi);
+             let bmiStatus;
+             if (bmi < 18.5) bmiStatus ="Underweight";
+             else if (bmi >= 18.5 && bmi < 24.9) bmiStatus= "Normal";
+             else if (bmi >= 25 && bmi < 29.9) bmiStatus= "Overweight";
+             else bmiStatus= "Obese";
+             setStatus(bmiStatus);
             }}
           >
             {(formik) => (
               <div className="W-loginContainer">
                 <div className="W-content">
                   <div className="L-bmi-title">BMI Calculator</div>
-                  <Form>
+                  <Form onSubmit={formik.handleSubmit}>
                     <Textfield_bmical
-                      label="Height"
-                      name="height"
-                      type="text"
+                      label="Your Height"
+                      name="your_height"
+                      type="number"
                     />
                     <Textfield_bmical
                       label="Weight"
-                      name="weight"
-                      type="text"
+                      name="your_weight"
+                      type="number"
                     />
                     <button className="W-buttons" type="submit">
                       Calculate
