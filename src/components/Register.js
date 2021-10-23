@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 import "./Register.css";
 import Textfileld_register from './Textfileld_register';
 import Navbar_login from './Navbar_login';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 
 function Register() {
@@ -25,6 +27,8 @@ function Register() {
       .oneOf([Yup.ref('password'), null], 'Password must match')
       .required('Confirm password is required'),
   })
+
+  let history = useHistory()
 return (
   <>
   <Navbar_login/>
@@ -40,8 +44,18 @@ return (
         confirmPassword: ''
       }}
       validationSchema={validate}
-      onSubmit={values => {
-        console.log(values)
+      onSubmit={async (values) => {
+        let data={firstName:values.firstName,lastName:values.lastName,password:values.password,email:values.email}
+        try {
+          let postData = await axios.post("http://localhost:3001/",data);
+          window.alert("data posted")
+          console.log(postData+"postdata");
+          history.push("/login")
+        } catch (error) {
+          console.log(error);
+        }
+
+        console.log(data);
       }}
     >{formik => (
       

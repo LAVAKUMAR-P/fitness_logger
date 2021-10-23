@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import "./Login.css";
 import Textfield_login from "./Textfield_login";
 import { Link } from "react-router-dom";
 import Navbar_login from "./Navbar_login";
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
+
 function Login() {
   const validate = Yup.object({
     email: Yup.string().email("Email is invalid").required("Email is required"),
@@ -12,6 +15,7 @@ function Login() {
       .min(6, "Password must be at least 6 charaters")
       .required("Password is required"),
   });
+  let history = useHistory()
   return (
     <>
       <Navbar_login />
@@ -23,8 +27,14 @@ function Login() {
               password: "",
             }}
             validationSchema={validate}
-            onSubmit={(values) => {
-              console.log(values);
+            onSubmit={async(values) => {
+              try {
+                let postData = await axios.post("http://localhost:3001/login",values);
+                console.log(postData);
+                window.alert("JWT token generated")
+              } catch (error) {
+                console.log(error);
+              }
             }}
           >
             {(formik) => (
