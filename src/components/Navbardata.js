@@ -14,6 +14,6 @@ export const NavbarData =[
     },
     {
         title : "Workout History",
-        path:"/teams",
+        path:"/workoutlog",
     },
 ]

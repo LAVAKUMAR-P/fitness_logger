@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Bmicalc from './components/Bmicalc';
 import Home from './components/Home';
+import WorkoutLog from './components/WorkoutLog';
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
          <Route path="/login" component={Login} exact={true}/>
          <Route path="/workout" component={Workout_done} exact={true}/>
          <Route path="/bmicalc" component={Bmicalc} exact={true}/>
+         <Route path="/workoutlog" component={WorkoutLog} exact={true}/>
      </Switch>
      </Router>
     </>
