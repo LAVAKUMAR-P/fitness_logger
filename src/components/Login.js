@@ -31,7 +31,9 @@ function Login() {
               try {
                 let postData = await axios.post("http://localhost:3001/login",values);
                 console.log(postData);
+                window.localStorage.setItem("app_token",postData.data.token)
                 window.alert("JWT token generated")
+
               } catch (error) {
                 console.log(error);
               }

@@ -5,6 +5,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Textfield_workout from "./Textfield_workout.js";
 import Navbar from "./Navbar";
+import axios from "axios";
 
 function Workout_done() {
   const validate = Yup.object({
@@ -30,9 +31,15 @@ function Workout_done() {
               comments: "",
             }}
             validationSchema={validate}
-            onSubmit={(values, { resetForm }) => {
+            onSubmit={async (values) => {
               console.log(values);
-              resetForm();
+              let postData = await axios.post(`http://localhost:3001/createData`, { message: values },{
+                headers : {
+                  "Authorization" : window.localStorage.getItem("app_token")
+                }
+              })
+              window.alert("data posted");
+              console.log(values);
             }}
           >
             {(formik) => (
