@@ -63,11 +63,11 @@ return (
         <div className="R-content">
         <div className="R-login-title">Register</div>
           <Form>
-            <Textfileld_register label="First Name" name="firstName" type="text" />
-            <Textfileld_register label="last Name" name="lastName" type="text" />
-            <Textfileld_register label="Email" name="email" type="email" />
-            <Textfileld_register label="password" name="password" type="password" />
-            <Textfileld_register label="Confirm Password" name="confirmPassword" type="password" /> 
+            <Textfileld_register label="First Name" name="firstName" type="text" placeholder="Enter First Name" />
+            <Textfileld_register label="last Name" name="lastName" type="text" placeholder="Enter Last  Name"  />
+            <Textfileld_register label="Email" name="email" type="email" placeholder="Enter email"  />
+            <Textfileld_register label="password" name="password" type="password" placeholder="Enter password"  />
+            <Textfileld_register label="Confirm Password" name="confirmPassword" type="password" placeholder="Confirm Password"/> 
             <button className="R-buttons" type="submit">Register</button>
             <button className="R-buttons" type="reset">Reset</button>
           </Form>
