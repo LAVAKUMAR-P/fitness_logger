@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import "./Bmicalc.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Textfield_bmical from "./Textfield_bmical";
 import Navbar from "./Navbar";
 import { useState } from "react/cjs/react.development";
+import Textfield from "./Textfield";
+
 
 function Bmicalc() {
 
@@ -53,12 +54,12 @@ function Bmicalc() {
                 <div className="W-content">
                   <div className="L-bmi-title">BMI Calculator</div>
                   <Form onSubmit={formik.handleSubmit}>
-                    <Textfield_bmical
+                    <Textfield
                       label="Your Height"
                       name="your_height"
                       type="number"
                     />
-                    <Textfield_bmical
+                    <Textfield
                       label="Weight"
                       name="your_weight"
                       type="number"

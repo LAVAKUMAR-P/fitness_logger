@@ -1,7 +1,6 @@
 import React from 'react'
-import "./Register.css";
 import { ErrorMessage, useField } from 'formik';
-function Textfileld_register({ label, ...props }) {
+function Textfield({ label, ...props }) {
         const [field, meta] = useField(props);
         return (
           <div>
@@ -9,7 +8,6 @@ function Textfileld_register({ label, ...props }) {
             <input
               className={`L-input ${meta.touched && meta.error &&  'L-input2'}`}
               {...field} {...props}
-              autoComplete="off"
             />
             <ErrorMessage component="div" name={field.name} className="error" />
           </div>
@@ -17,4 +15,4 @@ function Textfileld_register({ label, ...props }) {
         )
 }
 
-export default Textfileld_register
+export default Textfield

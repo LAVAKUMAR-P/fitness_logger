@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Workout_done.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Textfield_workout from "./Textfield_workout.js";
+import Textfield from "./Textfield.js";
 import Navbar from "./Navbar";
 import axios from "axios";
 
@@ -47,24 +47,24 @@ function Workout_done() {
                 <div className="WD-content">
                   <div className=".WD-Workout-title">Workout Out</div>
                   <Form>
-                    <Textfield_workout
+                    <Textfield
                       label="Enter Workout Name"
                       name="name"
                       type="text"
                     />
-                    <Textfield_workout
+                    <Textfield
                       label="Type of activity"
                       name="activity"
                       type="text"
                     />
 
-                    <Textfield_workout
+                    <Textfield
                       label="Time spent at activity"
                       name="time"
                       type="number"
                     />
 
-                    <Textfield_workout
+                    <Textfield
                       label="Comments"
                       name="comments"
                       type="comment"

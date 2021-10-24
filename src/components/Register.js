@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import "./Register.css";
-import Textfileld_register from './Textfileld_register';
 import Navbar_login from './Navbar_login';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import Textfield from './Textfield';
+
+
 
 
 function Register() {
@@ -47,7 +49,7 @@ return (
       onSubmit={async (values) => {
         let data={firstName:values.firstName,lastName:values.lastName,password:values.password,email:values.email}
         try {
-          let postData = await axios.post("http://localhost:3001/",data);
+          let postData = await axios.post("http://localhost:3001/register",data);
           window.alert("data posted")
           console.log(postData+"postdata");
           history.push("/login")
@@ -63,11 +65,11 @@ return (
         <div className="R-content">
         <div className="R-login-title">Register</div>
           <Form>
-            <Textfileld_register label="First Name" name="firstName" type="text" placeholder="Enter First Name" />
-            <Textfileld_register label="last Name" name="lastName" type="text" placeholder="Enter Last  Name"  />
-            <Textfileld_register label="Email" name="email" type="email" placeholder="Enter email"  />
-            <Textfileld_register label="password" name="password" type="password" placeholder="Enter password"  />
-            <Textfileld_register label="Confirm Password" name="confirmPassword" type="password" placeholder="Confirm Password"/> 
+            <Textfield label="First Name" name="firstName" type="text" placeholder="Enter First Name" />
+            <Textfield label="last Name" name="lastName" type="text" placeholder="Enter Last  Name"  />
+            <Textfield label="Email" name="email" type="email" placeholder="Enter email"  />
+            <Textfield label="password" name="password" type="password" placeholder="Enter password"  />
+            <Textfield label="Confirm Password" name="confirmPassword" type="password" placeholder="Confirm Password"/> 
             <button className="R-buttons" type="submit">Register</button>
             <button className="R-buttons" type="reset">Reset</button>
           </Form>

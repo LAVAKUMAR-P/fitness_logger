@@ -2,11 +2,12 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import "./Login.css";
-import Textfield_login from "./Textfield_login";
 import { Link } from "react-router-dom";
 import Navbar_login from "./Navbar_login";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+import Textfield from "./Textfield";
+
 
 function Login() {
   const validate = Yup.object({
@@ -44,8 +45,8 @@ function Login() {
                 <div className="L-content">
                   <div className="L-login-title">Login</div>
                   <Form>
-                    <Textfield_login label="Email" name="email" type="email" />
-                    <Textfield_login
+                    <Textfield label="Email" name="email" type="email" />
+                    <Textfield
                       label="password"
                       name="password"
                       type="password"
