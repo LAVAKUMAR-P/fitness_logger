@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Loading_page from "./Loading_page";
 import Navbar from "./Navbar";
 import "./WorkoutLog.css";
@@ -26,7 +27,9 @@ function WorkoutLog() {
              window.alert("Check your network")
          }
     }
-
+{
+    console.log(List.length);
+}
   return (
     <>
     
@@ -62,7 +65,7 @@ function WorkoutLog() {
                       <div>{items.message.comments}</div>
                     </div>
                     <div>
-                        <button className="WL-buttons">Edit</button>
+                      <Link to={`/EditWorkout/${items._id}`}><button className="WL-buttons">Edit</button></Link>
                         <button className="WL-buttons">Delete</button>
                     </div>
                   </div>

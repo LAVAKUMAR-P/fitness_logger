@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Workout_done.css";
 import { Formik, Form } from "formik";
@@ -7,7 +7,26 @@ import Textfield from "./Textfield.js";
 import Navbar from "./Navbar";
 import axios from "axios";
 
-function Edit_Workout_done() {
+function Edit_Workout_done(props) {
+  console.log(props);
+     const [Editdata, setEditdata] = useState("")
+  useEffect(() => {
+    fetchData();
+  }, []);
+      
+    let fetchData = async()=>{
+      try {
+        let getData= await axios(`http://localhost:3001/getData/${props.match.params.id}`,{
+          headers : {
+            "Authorization" : window.localStorage.getItem("app_token")
+          }
+        })
+        console.log(getData);
+        window.alert("data recived")
+      } catch (error) {
+        console.log(error);
+      }
+    }
   const validate = Yup.object({
     name: Yup.string()
       .max(30, "Must be 30 characters or less")
@@ -20,7 +39,7 @@ function Edit_Workout_done() {
   });
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="image">
         <div>
           <Formik
@@ -33,11 +52,15 @@ function Edit_Workout_done() {
             validationSchema={validate}
             onSubmit={async (values) => {
               console.log(values);
-              let postData = await axios.post(`http://localhost:3001/createData`, { message: values },{
-                headers : {
-                  "Authorization" : window.localStorage.getItem("app_token")
+              let postData = await axios.post(
+                `http://localhost:3001`,
+                { message: values },
+                {
+                  headers: {
+                    Authorization: window.localStorage.getItem("app_token"),
+                  },
                 }
-              })
+              );
               window.alert("data posted");
               console.log(values);
             }}
