@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Workout_done.css";
-import { Formik, Form } from "formik";
+import { Field, Form, Formik, useField } from "formik";
 import * as Yup from "yup";
-import Textfield from "./Textfield.js";
+import { ErrorMessage } from "formik";
 import Navbar from "./Navbar";
 import axios from "axios";
+import Textfield from "./Textfield";
 
 function Edit_Workout_done(props) {
-  console.log(props);
-     const [Editdata, setEditdata] = useState("")
+  const [Editdata, setEditdata] = useState("");
+  const [Namedata, setNamedata] = useState("");
+  const [Activitydata, setActivitydata] = useState("");
+  const [Timedata, setTimedata] = useState("");
+  const [Comdata, setComdata] = useState("");
   useEffect(() => {
     fetchData();
   }, []);
-      
-    let fetchData = async()=>{
-      try {
-        let getData= await axios(`http://localhost:3001/getData/${props.match.params.id}`,{
-          headers : {
-            "Authorization" : window.localStorage.getItem("app_token")
-          }
-        })
-        console.log(getData);
-        window.alert("data recived")
-      } catch (error) {
-        console.log(error);
-      }
+
+  let fetchData = async () => {
+    try {
+      let getData = await axios(
+        `http://localhost:3001/getData/${props.match.params.id}`,
+        {
+          headers: {
+            Authorization: window.localStorage.getItem("app_token"),
+          },
+        }
+      );
+      console.log(getData);
+      setEditdata(getData.data.message);
+      // window.alert("data recived");
+    } catch (error) {
+      console.log(error);
     }
+  };
   const validate = Yup.object({
     name: Yup.string()
       .max(30, "Must be 30 characters or less")
@@ -37,78 +45,97 @@ function Edit_Workout_done(props) {
     time: Yup.number().required("Number Required"),
     comments: Yup.string().max(30, "Must be 30 characters or less"),
   });
+  // const formik=useFormik({
+  //   initialValues:{
+  //     productName:"",
+  //     price:"",
+  //   },
+  //   validate={validate}
+  //   onSubmit: async (values) => {
+  //    console.log(values);
+  //   }
+
+  // })
+  const Formvalues={
+    name: Editdata.name,
+    activity: Editdata.activity,
+    time: Editdata.time,
+    comments: Editdata.comments,
+  }
+
   return (
     <>
-      <Navbar />
-      <div className="image">
-        <div>
-          <Formik
-            initialValues={{
-              name: "",
-              activity: "",
-              time: "",
-              comments: "",
-            }}
-            validationSchema={validate}
-            onSubmit={async (values) => {
-              console.log(values);
-              let postData = await axios.post(
-                `http://localhost:3001`,
-                { message: values },
+    <Navbar/>
+    <div className="image">
+      <div>
+        <Formik
+          initialValues={Formvalues}
+          validationSchema={validate}
+          onSubmit={async (values) => {
+            try {
+              let getData = await axios.put(
+                `http://localhost:3001/editData/${props.match.params.id}`,{ message: values },
                 {
                   headers: {
                     Authorization: window.localStorage.getItem("app_token"),
                   },
                 }
               );
+              console.log(values);
               window.alert("data posted");
               console.log(values);
-            }}
-          >
-            {(formik) => (
-              <div className="WD-loginContainer">
-                <div className="WD-content">
-                  <div className=".WD-Workout-title">Workout Out</div>
-                  <Form>
-                    <Textfield
-                      label="Enter Workout Name"
-                      name="name"
-                      type="text"
-                    />
-                    <Textfield
-                      label="Type of activity"
-                      name="activity"
-                      type="text"
-                    />
+              window.alert("data updated");
+              console.log(Namedata);
+            } catch (error) {
+              console.log(error);
+            }
+          }}
+          enableReinitialize
+        >
+          {(formik) => (
+            <div className="WD-loginContainer">
+              <div className="WD-content">
+                <div className=".WD-Workout-title">Workout Out</div>
+                <Form>
+                  <Textfield
+                    label="Enter Workout Name"
+                    name="name"
+                    type="text"
+                  />
+                  <Textfield
+                    label="Type of activity"
+                    name="activity"
+                    type="text"
+                  />
 
-                    <Textfield
-                      label="Time spent at activity"
-                      name="time"
-                      type="number"
-                    />
+                  <Textfield
+                    label="Time spent at activity"
+                    name="time"
+                    type="number"
+                  />
 
-                    <Textfield
-                      label="Comments"
-                      name="comments"
-                      type="comment"
-                    />
-                    <button className="WD-buttons" type="submit">
-                      Submit
-                    </button>
-                    <button className="WD-buttons" type="reset">
-                      Reset
-                    </button>
-                  </Form>
-                </div>
+                  <Textfield
+                    label="Comments"
+                    name="comments"
+                    type="comment"
+                  />
+                  <button className="WD-buttons" type="submit">
+                    Submit
+                  </button>
+                  <button className="WD-buttons" type="reset">
+                    Reset
+                  </button>
+                </Form>
               </div>
-            )}
-          </Formik>
-          <Link to="/login">
-            <button className="WD-buttons">next</button>
-          </Link>
-        </div>
+            </div>
+          )}
+        </Formik>
+        <Link to="/login">
+          <button className="WD-buttons">next</button>
+        </Link>
       </div>
-    </>
+    </div>
+  </>
   );
 }
 
