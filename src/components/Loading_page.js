@@ -1,6 +1,8 @@
 import React from "react";
 import "./Loading_page.css";
-import Typewriter from "typewriter-effect";
+import Loading from "./images/Loading.gif"
+
+
 function Loading_page() {
   return (
     <>
@@ -10,7 +12,7 @@ function Loading_page() {
             <div className="Loding_typing">
             PAGE LOADING.....
             </div>
-            <img src="Loading.gif" alt="Loading_image" className="Loading" />
+            <img src={Loading} alt="Loading_image" className="Loading" />
           </div>
         </div>
       </div>

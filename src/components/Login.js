@@ -10,18 +10,22 @@ import Textfield from "./Textfield";
 
 
 function Login() {
+
+
   const validate = Yup.object({
     email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
       .min(6, "Password must be at least 6 charaters")
       .required("Password is required"),
   });
-  let history = useHistory()
+
+  let history = useHistory();
+
   return (
     <>
       <Navbar_login />
       <div className="image">
-        <div>
+        <div className="L-container-position">
           <Formik
             initialValues={{
               email: "",
@@ -33,10 +37,16 @@ function Login() {
                 let postData = await axios.post("http://localhost:3001/login",values);
                 console.log(postData);
                 window.localStorage.setItem("app_token",postData.data.token)
-                window.alert("JWT token generated")
-
+                 window.alert("jwt token generated")
+                 history.push("/home")
               } catch (error) {
-                console.log(error);
+                if(error.message ==="Request failed with status code 401"){
+                  window.alert("user name or password mismatch")
+                }
+              else{
+                window.alert("Check your network")
+              }
+                
               }
             }}
           >

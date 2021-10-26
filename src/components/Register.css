@@ -5,10 +5,16 @@
     background-repeat: no-repeat;
     background-size: cover !important;
     background-blend-mode: darken;
+    height: 100vh;
+  }
+
+
+/*container position*/
+.R-loginContainer{
     display: grid;
     place-items: center;
     height: 100vh;
-  }
+}  
 
 /*content inside container*/
 .R-content{

@@ -17,9 +17,9 @@ function App() {
     <>
     <Router>
       <Switch>
-         <Route path="/" component={Home} exact={true}/>
+         <Route path="/" component={Login} exact={true}/>
          <Route path="/register" component={Register} exact={true}/>
-         <Route path="/login" component={Login} exact={true}/>
+         <Route path="/home" component={Home} exact={true}/>
          <Route path="/workout" component={Workout_done} exact={true}/>
          <Route path="/bmicalc" component={Bmicalc} exact={true}/>
          <Route path="/workoutlog" component={WorkoutLog} exact={true}/>

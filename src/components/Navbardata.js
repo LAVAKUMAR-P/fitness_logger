@@ -2,7 +2,7 @@
 export const NavbarData =[
     {
         title : "Home",
-        path:"/",
+        path:"/home",
     },
     {
         title : "Register workout",

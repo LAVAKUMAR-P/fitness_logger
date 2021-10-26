@@ -29,7 +29,7 @@ function Bmicalc() {
     <>
       <Navbar />
       <div className="image">
-        <div>
+        <div className="W-container">
           <Formik
             initialValues={{
               your_height: "",
@@ -84,9 +84,6 @@ function Bmicalc() {
               </div>
             )}
           </Formik>
-          <Link to="/">
-            <button className="W-buttons">next</button>
-          </Link>
         </div>
       </div>
     </>

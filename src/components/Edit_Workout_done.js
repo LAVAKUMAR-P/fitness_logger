@@ -3,24 +3,23 @@ import { Link } from "react-router-dom";
 import "./Workout_done.css";
 import { Field, Form, Formik, useField } from "formik";
 import * as Yup from "yup";
-import { ErrorMessage } from "formik";
 import Navbar from "./Navbar";
 import axios from "axios";
 import Textfield from "./Textfield";
+import Loading_page from "./Loading_page";
+import MySelect from "./FormiclMySelect";
 
 function Edit_Workout_done(props) {
-  const [Editdata, setEditdata] = useState("");
-  const [Namedata, setNamedata] = useState("");
-  const [Activitydata, setActivitydata] = useState("");
-  const [Timedata, setTimedata] = useState("");
-  const [Comdata, setComdata] = useState("");
+
   useEffect(() => {
     fetchData();
   }, []);
 
+
+  const [Editdata, setEditdata] = useState("");
   let fetchData = async () => {
     try {
-      let getData = await axios(
+      let getData = await axios.get(
         `http://localhost:3001/getData/${props.match.params.id}`,
         {
           headers: {
@@ -30,8 +29,9 @@ function Edit_Workout_done(props) {
       );
       console.log(getData);
       setEditdata(getData.data.message);
-      // window.alert("data recived");
+      window.alert("data recived");
     } catch (error) {
+      window.alert("failed to data recived");
       console.log(error);
     }
   };
@@ -66,6 +66,9 @@ function Edit_Workout_done(props) {
   return (
     <>
     <Navbar/>
+    { 
+       (Editdata.length === 0)? <Loading_page/>:
+
     <div className="image">
       <div>
         <Formik
@@ -84,8 +87,6 @@ function Edit_Workout_done(props) {
               console.log(values);
               window.alert("data posted");
               console.log(values);
-              window.alert("data updated");
-              console.log(Namedata);
             } catch (error) {
               console.log(error);
             }
@@ -95,18 +96,22 @@ function Edit_Workout_done(props) {
           {(formik) => (
             <div className="WD-loginContainer">
               <div className="WD-content">
-                <div className=".WD-Workout-title">Workout Out</div>
+                <div className=".WD-Workout-title">Edit Workout Out</div>
                 <Form>
-                  <Textfield
-                    label="Enter Workout Name"
-                    name="name"
-                    type="text"
-                  />
-                  <Textfield
-                    label="Type of activity"
-                    name="activity"
-                    type="text"
-                  />
+                <MySelect label="Enter Workout Name" name="name">
+                      <option value="">Select Workout Name</option>
+                      <option value="Running">Running</option>
+                      <option value="Walking">Walking</option>
+                      <option value="Step walk">Step walk</option>
+                      <option value="Skiping">Skiping</option>
+                    </MySelect>
+             
+
+                    <MySelect label="Type of activity" name="activity">
+                      <option value="">Select Type of activity</option>
+                      <option value="Cardio">Cardio</option>
+                      <option value="others">others</option>
+                    </MySelect>
 
                   <Textfield
                     label="Time spent at activity"
@@ -135,6 +140,7 @@ function Edit_Workout_done(props) {
         </Link>
       </div>
     </div>
+    }
   </>
   );
 }

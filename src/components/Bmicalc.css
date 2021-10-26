@@ -5,10 +5,17 @@
     background-repeat: no-repeat;
     background-size: cover !important;
     background-blend-mode: darken;
+    height: 100vh;
+  }
+
+  
+/* containe to postion the calc*/
+.W-container{
     display: grid;
     place-items: center;
     height: 100vh;
-  }
+}
+
 
 /*content in that container*/
 .W-content{

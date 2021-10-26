@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import Textfield from "./Textfield.js";
 import Navbar from "./Navbar";
 import axios from "axios";
+import MySelect from "./FormiclMySelect";
 
 function Workout_done() {
   const validate = Yup.object({
@@ -22,7 +23,7 @@ function Workout_done() {
     <>
       <Navbar/>
       <div className="image">
-        <div>
+        <div className="WD-Container" >
           <Formik
             initialValues={{
               name: "",
@@ -45,21 +46,25 @@ function Workout_done() {
             {(formik) => (
               <div className="WD-loginContainer">
                 <div className="WD-content">
-                  <div className=".WD-Workout-title">Workout Out</div>
+                  <div className=".WD-Workout-title">Workout Out Register</div>
                   <Form>
-                    <Textfield
-                      label="Enter Workout Name"
-                      name="name"
-                      type="text"
-                    />
-                    <Textfield
-                      label="Type of activity"
-                      name="activity"
-                      type="text"
-                    />
+                  <MySelect label="Enter Workout Name" name="name">
+                      <option value="">Select Workout Name</option>
+                      <option value="Running">Running</option>
+                      <option value="Walking">Walking</option>
+                      <option value="Step walk">Step walk</option>
+                      <option value="Skiping">Skiping</option>
+                    </MySelect>
+             
+
+                    <MySelect label="Type of activity" name="activity">
+                      <option value="">Select Type of activity</option>
+                      <option value="Cardio">Cardio</option>
+                      <option value="others">others</option>
+                    </MySelect>
 
                     <Textfield
-                      label="Time spent at activity"
+                      label="Time spent at activity(sets/time)"
                       name="time"
                       type="number"
                     />

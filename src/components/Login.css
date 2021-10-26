@@ -8,10 +8,17 @@
     background-repeat: no-repeat !important;
     background-size: cover;
     background-blend-mode: darken;
+    height: 100vh;
+  }
+
+ /*container position*/
+.L-container-position{
     display: grid;
     place-items: center;
     height: 100vh;
-  }
+}
+
+
 
 .L-content{
     display: grid;

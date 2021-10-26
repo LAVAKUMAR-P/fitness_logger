@@ -10,8 +10,6 @@
     background-repeat: no-repeat;
     background-size: cover !important;
     background-blend-mode: darken;
-    display: grid;
-    place-items: center;
     height: 100vh;
   }
 /*css for buttons*/

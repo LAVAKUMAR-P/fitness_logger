@@ -19,7 +19,7 @@ function WorkoutLog() {
                }
             }) 
             setList([...Data.data]);
-            window.alert("Data recived")
+           
             setLoading(false)
          } catch (error) {
             setLoading(false)
@@ -27,9 +27,28 @@ function WorkoutLog() {
              window.alert("Check your network")
          }
     }
-{
-    console.log(List.length);
-}
+   let handleDelete=async(id)=>{
+          try {
+           let ok =window.confirm("Are you want to delete data permently?")
+            console.log(id);
+           if(ok)
+           {
+            await axios.delete(`http://localhost:3001/deletData/${id}`,{
+              headers : {
+                "Authorization" : window.localStorage.getItem("app_token")
+              }
+            });
+            await fetchData();
+            window.alert("Data deleted sucessfully!......");
+           }
+           else{
+            window.alert("Don't worry you sucessfully canceled Delete data......");
+           }
+          } catch (error) {
+            console.log(error);
+            window.alert("Check your network");
+          }
+   }
   return (
     <>
     
@@ -66,7 +85,7 @@ function WorkoutLog() {
                     </div>
                     <div>
                       <Link to={`/EditWorkout/${items._id}`}><button className="WL-buttons">Edit</button></Link>
-                        <button className="WL-buttons">Delete</button>
+                        <button onClick={() => handleDelete(items._id)} className="WL-buttons">Delete</button>
                     </div>
                   </div>
                 );

@@ -1,18 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import Navbar_login from "./Navbar_login";
+import Navbar from "./Navbar";
+
 
 function Home() {
   return (
     <>
-      <Navbar_login />
-      <div className="image">
+      <Navbar/>
+      <div className="">
         <div>
           <h2>hi guys</h2>
-          <Link to="/register">
-            <button className="H-buttons">next</button>
-          </Link>
         </div>
       </div>
     </>
