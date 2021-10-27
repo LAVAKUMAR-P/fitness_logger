@@ -20,7 +20,7 @@ function WorkoutLog() {
         },
       });
       console.log(Data);
-      setList([...Data.data.postMessages]);
+      setList([...Data.data.registerSchemas]);
       setBmi([...Data.data.BMIMessages]);
       setLoading(false);
       console.log(
@@ -37,9 +37,7 @@ function WorkoutLog() {
       window.alert("Check your network");
     }
   };
-  if (Bmi.length !== 0) {
-    newweight = Number(Bmi[0].bmi / (Bmi[0].height / 100) ** 2).toFixed(2);
-  }
+
 
   let handleDelete = async (id) => {
     try {
@@ -100,9 +98,9 @@ function WorkoutLog() {
                 
               </div>
               <div>
-                <Link to={`/EditWorkout/${Bmi}`}>
+                <Link to={`/Editbmi/${Bmi[0]._id}`}>
                       <button className="WL-buttons">Edit</button>
-                    </Link>
+                </Link>
                 </div>
             </div>
             {List.map((items, index) => {

@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import "./Bmicalc.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -7,31 +6,62 @@ import Navbar from "./Navbar";
 import { useState } from "react/cjs/react.development";
 import Textfield from "./Textfield";
 import axios from "axios";
+import { useHistory } from "react-router";
 
-function Bmicalc() {
+function BmicalcEdit(props) {
+  const [Editdata, setEditdata] = useState("");
+  const [bmi, setbmi] = useState(null);
+  const [status, setStatus] = useState(null);
+  let Newvalue;
+  let bmiStatus=null;
+let history=useHistory();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+ 
+  let fetchData = async () => {
+    try {
+      let getData = await axios.get(
+        `http://localhost:3001/getbmiedit/${props.match.params.id}`,
+        {
+          headers: {
+            Authorization: window.localStorage.getItem("app_token"),
+          },
+        }
+      );
+      console.log("------------------------------------------------");
+      console.log(getData.data);
+      console.log("------------------------------------------------");
+
+      setEditdata(getData.data);
+      console.log(Editdata);
+      
+    } catch (error) {
+      window.alert("failed to data recived");
+      console.log(error);
+    }
+  };
+
   const validate = Yup.object({
     your_height: Yup.number().required("height is required"),
     your_weight: Yup.number().required("weight is required"),
   });
 
-  const [bmi, setbmi] = useState("");
-  const [status, setStatus] = useState("");
-  let bmiResult = null;
-  let bmivalue=null;
-  let Newvalue;
 
-  const saveValue = async () => {
+  const saveValue = async (bmi,bmiStatus) => {
+    let bmiresults=bmi;
     try {
-      if (bmiResult !== null && bmivalue !== null) {
+      if (bmiStatus !== null) {
         console.log(Newvalue.your_height);
         console.log(Newvalue.your_weight);
-        let postData = await axios.post(
-          `http://localhost:3001/createbmi`,
+        let postData = await axios.put(
+          `http://localhost:3001/editbmi/${props.match.params.id}`,
           {
             height: Newvalue.your_height,
             weight: Newvalue.your_weight,
-            bmi: bmiResult,
-            bmiresult: bmivalue,
+            bmi: bmiresults,
+            bmiresult: bmiStatus,
           },
           {
             headers: {
@@ -41,6 +71,7 @@ function Bmicalc() {
         );
 
         window.alert("data posted");
+        history.push("/workoutlog")
       }
       else{
         window.alert("Sorry something went wrong kindly click calculate again");
@@ -65,8 +96,8 @@ function Bmicalc() {
         <div className="W-container">
           <Formik
             initialValues={{
-              your_height: "",
-              your_weight: "",
+              your_height: Editdata.height,
+              your_weight: Editdata.weight,
             }}
             validationSchema={validate}
             onSubmit={(values) => {
@@ -75,27 +106,25 @@ function Bmicalc() {
                   values.your_weight / (values.your_height / 100) ** 2
                 ).toFixed(2);
                 setbmi(bmi);
-                bmiResult = bmi;
-                let bmiStatus;
                 if (bmi < 18.5) bmiStatus = "Underweight";
                 else if (bmi >= 18.5 && bmi < 24.9) bmiStatus = "Normal";
                 else if (bmi >= 25 && bmi < 29.9) bmiStatus = "Overweight";
                 else bmiStatus = "Obese";
                 setStatus(bmiStatus);
                 Newvalue = values;
-                bmivalue=bmiStatus;
                 console.log(`${Newvalue.your_height}`);
                 console.log(bmi);
-                saveValue();
+                saveValue(bmi,bmiStatus)
               } catch (error) {
                 console.log(error);
               }
             }}
+            enableReinitialize
           >
             {(formik) => (
               <div className="W-loginContainer">
                 <div className="W-content">
-                  <div className="L-bmi-title">BMI Calculator</div>
+                  <div className="L-bmi-title">EDIT BMI</div>
                   <Form onSubmit={formik.handleSubmit}>
                     <Textfield
                       label="Your Height"
@@ -107,7 +136,7 @@ function Bmicalc() {
                       name="your_weight"
                       type="number"
                     />
-                    <button className="W-buttons" type="submit">
+                    <button className="W-buttons" type="submit" to="/workoutlog">
                       Calculate
                     </button>
                     <button className="W-buttons" type="reset">
@@ -133,4 +162,4 @@ function Bmicalc() {
   );
 }
 
-export default Bmicalc;
+export default BmicalcEdit;

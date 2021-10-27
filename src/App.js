@@ -12,6 +12,7 @@ import Bmicalc from './components/Bmicalc';
 import Home from './components/Home';
 import WorkoutLog from './components/WorkoutLog';
 import Edit_Workout_done from './components/Edit_Workout_done';
+import BmicalcEdit from './components/BmicalcEdit';
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
          <Route path="/bmicalc" component={Bmicalc} exact={true}/>
          <Route path="/workoutlog" component={WorkoutLog} exact={true}/>
          <Route path="/EditWorkout/:id" component={Edit_Workout_done} exact={true}/>
+         <Route path="/Editbmi/:id" component={BmicalcEdit} exact={true}/>
      </Switch>
      </Router>
     </>
