@@ -6,10 +6,9 @@ import * as Yup from "yup";
 import Navbar from "./Navbar";
 import { useState } from "react/cjs/react.development";
 import Textfield from "./Textfield";
-
+import axios from "axios";
 
 function Bmicalc() {
-
   const validate = Yup.object({
     your_height: Yup.number().required("height is required"),
     your_weight: Yup.number().required("weight is required"),
@@ -17,8 +16,39 @@ function Bmicalc() {
 
   const [bmiResult, setBmiResult] = useState(null);
   const [status, setStatus] = useState("");
+ 
+  let Newvalue,bmi;
 
 
+  const saveValue = async () => {
+ 
+    try {
+        console.log(Newvalue.your_height);
+        console.log(Newvalue.your_weight);
+      let postData = await axios.post(
+        `http://localhost:3001/createbmi`,
+        {
+          height: Newvalue.your_height,
+          weight: Newvalue.your_weight,
+          bmi: bmiResult,
+          bmiresult: bmi,
+        },
+        {
+          headers: {
+            Authorization: window.localStorage.getItem("app_token"),
+          },
+        }
+      );
+
+      window.alert("data posted");
+     
+    } catch (error) {
+      console.log(error);
+     
+      window.alert("something went wrong")
+      
+    }
+  };
 
   const clearValue = () => {
     setBmiResult(null);
@@ -36,17 +66,26 @@ function Bmicalc() {
               your_weight: "",
             }}
             validationSchema={validate}
-            onSubmit={ (values) => {
-             console.log(values.your_weight)
-             console.log(values.your_height);
-             let bmi = Number(values.your_weight / (values.your_height / 100) ** 2).toFixed(2);
-             setBmiResult(bmi);
-             let bmiStatus;
-             if (bmi < 18.5) bmiStatus ="Underweight";
-             else if (bmi >= 18.5 && bmi < 24.9) bmiStatus= "Normal";
-             else if (bmi >= 25 && bmi < 29.9) bmiStatus= "Overweight";
-             else bmiStatus= "Obese";
-             setStatus(bmiStatus);
+            onSubmit={(values) => {
+              try {
+                let bmi = Number(
+                  values.your_weight / (values.your_height / 100) ** 2
+                ).toFixed(2);
+                setBmiResult(bmi);
+                let bmiStatus;
+                if (bmi < 18.5) bmiStatus = "Underweight";
+                else if (bmi >= 18.5 && bmi < 24.9) bmiStatus = "Normal";
+                else if (bmi >= 25 && bmi < 29.9) bmiStatus = "Overweight";
+                else bmiStatus = "Obese";
+                setStatus(bmiStatus)
+                 Newvalue=values;
+                 bmi=bmiStatus;
+                console.log(`${Newvalue.your_height}`);
+                console.log(bmi);
+                saveValue()
+              } catch (error) {
+                console.log(error);
+              }
             }}
           >
             {(formik) => (

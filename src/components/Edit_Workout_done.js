@@ -70,7 +70,7 @@ function Edit_Workout_done(props) {
        (Editdata.length === 0)? <Loading_page/>:
 
     <div className="image">
-      <div>
+      <div className="WD-Container">
         <Formik
           initialValues={Formvalues}
           validationSchema={validate}

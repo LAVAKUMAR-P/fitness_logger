@@ -57,7 +57,12 @@ function Register() {
                   console.log(postData + "postdata");
                   history.push("/login");
                 } catch (error) {
-                  console.log(error);
+                  if(error.message==="Request failed with status code 409"){
+                    window.alert("Mailid is alredy redistered");
+                  }
+                  else{
+                    window.alert("check your network");
+                  }
                 }
 
                 console.log(data);
