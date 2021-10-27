@@ -14,15 +14,16 @@ function Bmicalc() {
     your_weight: Yup.number().required("weight is required"),
   });
 
-  const [bmiResult, setBmiResult] = useState(null);
+  const[bmi,setbmi]=useState("")
   const [status, setStatus] = useState("");
- 
-  let Newvalue,bmi;
+  let bmiResult=null;
+  let Newvalue;
 
 
   const saveValue = async () => {
- 
+   
     try {
+    if(bmiResult!==null){
         console.log(Newvalue.your_height);
         console.log(Newvalue.your_weight);
       let postData = await axios.post(
@@ -41,17 +42,21 @@ function Bmicalc() {
       );
 
       window.alert("data posted");
-     
+    }
+    window.alert("Sorry something went wrong kindly click calculate again");
     } catch (error) {
-      console.log(error);
-     
-      window.alert("something went wrong")
+      if(error.message==="Request failed with status code 409"){
+        window.alert("your data is there you can only edit it");
+      }
+      else{
+        window.alert("check your network");
+      }
       
     }
   };
 
   const clearValue = () => {
-    setBmiResult(null);
+    
     setStatus("");
   };
 
@@ -71,7 +76,8 @@ function Bmicalc() {
                 let bmi = Number(
                   values.your_weight / (values.your_height / 100) ** 2
                 ).toFixed(2);
-                setBmiResult(bmi);
+                setbmi(bmi)
+                bmiResult=bmi;
                 let bmiStatus;
                 if (bmi < 18.5) bmiStatus = "Underweight";
                 else if (bmi >= 18.5 && bmi < 24.9) bmiStatus = "Normal";
@@ -109,9 +115,9 @@ function Bmicalc() {
                     <button className="W-buttons" type="reset">
                       Reset
                     </button>
-                    {bmiResult && (
+                    {status && (
                       <div>
-                        <p>Your BMI is: {bmiResult} </p>
+                        <p>Your BMI is: {bmi} </p>
                         <p>You are currently: {status}</p>
                         <button className="W-buttons" onClick={clearValue}>
                           Clere
