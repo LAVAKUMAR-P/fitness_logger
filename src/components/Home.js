@@ -34,7 +34,7 @@ useEffect(async() => {
       <Navbar/>
       <div className="Logout-button-position">
       {
-         (Admin ==="true" )? (<button className="L-buttons" type="reset" onClick={Logout}>Admin Dashboard</button>):""
+         (Admin ==="true" )? (<Link to="/admin"><button  className="L-buttons" type="reset"  >Admin Dashboard</button></Link>):""
 
       }
       <button className="L-buttons" type="reset" onClick={Logout}>

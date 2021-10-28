@@ -13,6 +13,7 @@ import Home from './components/Home';
 import WorkoutLog from './components/WorkoutLog';
 import Edit_Workout_done from './components/Edit_Workout_done';
 import BmicalcEdit from './components/BmicalcEdit';
+import Adminusers from './components/Adminusers';
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
          <Route path="/home" component={Home} exact={true}/>
          <Route path="/workout" component={Workout_done} exact={true}/>
          <Route path="/bmicalc" component={Bmicalc} exact={true}/>
+         <Route path="/admin" component={Adminusers} exact={true}/>
          <Route path="/workoutlog" component={WorkoutLog} exact={true}/>
          <Route path="/EditWorkout/:id" component={Edit_Workout_done} exact={true}/>
          <Route path="/Editbmi/:id" component={BmicalcEdit} exact={true}/>
