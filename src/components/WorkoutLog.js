@@ -98,9 +98,16 @@ function WorkoutLog() {
                 
               </div>
               <div>
-                <Link to={`/Editbmi/${Bmi[0]._id}`}>
+              {Bmi.length === 0 ? (
+                  <Link to={`/bmicalc`}>
+                  <button className="WL-buttons">Create BMI</button>
+                  </Link>
+                ) : (
+                  <Link to={`/Editbmi/${Bmi[0]._id}`}>
                       <button className="WL-buttons">Edit</button>
                 </Link>
+                )}
+                
                 </div>
             </div>
             {List.map((items, index) => {
