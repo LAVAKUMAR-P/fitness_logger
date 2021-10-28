@@ -2,16 +2,12 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import "./Login.css";
-import { Link } from "react-router-dom";
 import Navbar_login from "./Navbar_login";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 
-
 function Login() {
-
-
   const validate = Yup.object({
     email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
@@ -32,21 +28,24 @@ function Login() {
               password: "",
             }}
             validationSchema={validate}
-            onSubmit={async(values) => {
+            onSubmit={async (values) => {
               try {
-                let postData = await axios.post("http://localhost:3001/login",values);
+                let postData = await axios.post(
+                  "http://localhost:3001/login",
+                  values
+                );
                 console.log(postData);
-                window.localStorage.setItem("app_token",postData.data.token)
-                 window.alert("jwt token generated")
-                 history.push("/home")
+                window.localStorage.setItem("app_token", postData.data.token);
+                window.localStorage.setItem("action", postData.data.unconditional);
+                window.alert("jwt token generated");
+                history.push("/home");
               } catch (error) {
-                if(error.message ==="Request failed with status code 401"){
-                  window.alert("user name or password mismatch")
+                console.log("error");
+                if (error.message === "Request failed with status code 401") {
+                  window.alert("user name or password mismatch");
+                } else {
+                  window.alert("Check your network");
                 }
-              else{
-                window.alert("Check your network")
-              }
-                
               }
             }}
           >
@@ -61,9 +60,9 @@ function Login() {
                       name="password"
                       type="password"
                     />
-                    <button className="L-buttons" type="submit">
-                      Register
-                    </button>
+                      <button className="L-buttons" type="submit">
+                        Login
+                      </button>
                     <button className="L-buttons" type="reset">
                       Reset
                     </button>
@@ -72,9 +71,6 @@ function Login() {
               </div>
             )}
           </Formik>
-          <Link to="/workout">
-            <button className="L-buttons">next</button>
-          </Link>
         </div>
       </div>
     </>

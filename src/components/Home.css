@@ -12,6 +12,15 @@
     background-blend-mode: darken;
     height: 100vh;
   }
+
+/*Logout-button-position*/
+
+.Logout-button-position{
+    display: flex;
+    
+    justify-content: flex-end;
+}
+
 /*css for buttons*/
 .H-buttons{
     padding: 0.5em 2em 0.5em 2em;

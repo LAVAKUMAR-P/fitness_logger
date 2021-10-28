@@ -1,11 +1,11 @@
 /*BACKGROUNG IMAGE CSS*/
-.image {
+.Register-image {
     background: rgba(0, 0, 0, 0.7) url("./images/home.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover !important;
     background-blend-mode: darken;
-    height: 100vh;
+    
   }
 
 

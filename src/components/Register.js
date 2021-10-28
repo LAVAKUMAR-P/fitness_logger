@@ -28,7 +28,7 @@ function Register() {
   let history = useHistory();
   return (
     <>
-      <div className="image">
+      <div className="Register-image">
         <Navbar_login />
         <section className="R-loginContainer">
           <div >
@@ -55,7 +55,7 @@ function Register() {
                   );
                   window.alert("data posted");
                   console.log(postData + "postdata");
-                  history.push("/login");
+                  history.push("/");
                 } catch (error) {
                   if(error.message==="Request failed with status code 409"){
                     window.alert("Mailid is alredy redistered");
@@ -103,7 +103,7 @@ function Register() {
                         type="password"
                         placeholder="Confirm Password"
                       />
-                      <button className="R-buttons" type="submit">
+                       <button className="R-buttons" type="submit">
                         Register
                       </button>
                       <button className="R-buttons" type="reset">
@@ -114,9 +114,6 @@ function Register() {
                 </div>
               )}
             </Formik>
-            <Link to="/login">
-              <button className="R-buttons">next</button>
-            </Link>
           </div>
         </section>
       </div>
