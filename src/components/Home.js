@@ -43,7 +43,10 @@ useEffect(async() => {
       </div>
       <div className="">
         <div>
-          <h2>hi guys</h2>
+          <div>
+            This app is developed for Education purpose so Data here taken are not 
+            accurate.
+          </div>
         </div>
       </div>
     </>

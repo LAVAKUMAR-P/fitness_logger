@@ -1,0 +1,28 @@
+/*excel download button postion*/
+.export_document_position{
+  position: absolute;
+  left: 0px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em 2em 0.5em 2em;
+}
+
+/*css for excel buttons*/
+/*css for buttons*/
+.E-buttons{
+  padding: 0.5em;
+  margin: 0.5em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: #ffff;
+  background-color: rgba(49, 49, 235, 0.774);
+  border-radius: 5px;
+  border: none;
+}
+
+.E-buttons:hover{
+  background-color: rgba(20, 20, 143, 0.774);
+  cursor: pointer; 
+  box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
+}

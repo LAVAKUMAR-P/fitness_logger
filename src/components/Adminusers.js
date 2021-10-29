@@ -4,14 +4,22 @@ import { useHistory } from "react-router";
 import Loading_page from "./Loading_page";
 import Navbar from "./Navbar";
 import "./WorkoutLog.css";
+import "./Adminusers.css";
+import { ExportCSV } from "./ExportCSV";
+
+
 function Adminusers() {
   const [Loading, setLoading] = useState(true);
   const [List, setList] = useState([]);
   let history = useHistory();
+  const fileName = 'FitnessLog_user_Data'
+
+  const viewers = List
 
   useEffect(() => {
     fetchData();
   }, []);
+
   let fetchData = async () => {
     try {
       let getdata = await axios.get("http://localhost:3001/getalluser", {
@@ -19,9 +27,7 @@ function Adminusers() {
           Authorization: window.localStorage.getItem("app_token"),
         },
       });
-      console.log(getdata);
       setList([...getdata.data]);
-      console.log(List);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -30,7 +36,7 @@ function Adminusers() {
         window.localStorage.removeItem("action");
         window.alert("you are not allowed to come here");
         history.push("/");
-      }else{
+      } else {
         console.log(error);
         window.alert("Check your network");
       }
@@ -41,26 +47,54 @@ function Adminusers() {
     try {
       let ok = window.confirm("Are you want make admin?");
       if (ok) {
-        await axios.post(`http://localhost:3001/makeadmin`,
-        {
-          email:mail,
-        },{
-          headers: {
-            Authorization: window.localStorage.getItem("app_token"),
+        await axios.post(
+          `http://localhost:3001/makeadmin`,
+          {
+            email: mail,
           },
-        });
+          {
+            headers: {
+              Authorization: window.localStorage.getItem("app_token"),
+            },
+          }
+        );
         await fetchData();
         window.alert("Chaned to admin sucessfully!......");
       } else {
-        window.alert("Don't worry you sucessfully canceled Delete data......");
+        window.alert("Don't worry you sucessfully canceled Make admin......");
       }
     } catch (error) {
-        console.log(error);
-        window.alert("Check your network");
+      console.log(error);
+      window.alert("Check your network");
     }
   };
 
-  console.log(List);
+  let removeadmin = async (mail) => {
+    try {
+      let ok = window.confirm("Are you want make admin?");
+      if (ok) {
+        await axios.post(
+          `http://localhost:3001/removeadmin`,
+          {
+            email: mail,
+          },
+          {
+            headers: {
+              Authorization: window.localStorage.getItem("app_token"),
+            },
+          }
+        );
+        await fetchData();
+        window.alert("Chaned to user sucessfully!......");
+      } else {
+        window.alert("Don't worry you sucessfully canceled remove admin......");
+      }
+    } catch (error) {
+      console.log(error);
+      window.alert("Check your network");
+    }
+  };
+
   return (
     <>
       <div className="workout_image">
@@ -68,7 +102,12 @@ function Adminusers() {
         {Loading ? (
           <Loading_page />
         ) : (
+         <div>
+           
           <div className="workout_Container_position">
+          <div className="export_document_position">
+              <ExportCSV csvData={viewers} fileName={fileName} />
+            </div>
             <div className="workout_Container">
               <div className="W-Card_containet">
                 <div>Totel users :</div>
@@ -92,11 +131,26 @@ function Adminusers() {
                     <div>{items.admin ? "true" : "false"}</div>
                   </div>
                   <div>
-                  {items.admin ? <button className="WL-buttons" >Remove admin</button> : <button className="WL-buttons" onClick={()=>makeadmin(items.email)}>Add admin</button>}
+                    {items.admin ? (
+                      <button
+                        className="WL-buttons"
+                        onClick={() => removeadmin(items.email)}
+                      >
+                        Remove admin
+                      </button>
+                    ) : (
+                      <button
+                        className="WL-buttons"
+                        onClick={() => makeadmin(items.email)}
+                      >
+                        Add admin
+                      </button>
+                    )}
                   </div>
                 </div>
               );
             })}
+          </div>
           </div>
         )}
       </div>
