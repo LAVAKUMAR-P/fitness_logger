@@ -51,4 +51,26 @@
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
 }
-  
+
+
+@media screen and (min-device-width: 270px) and (max-device-width: 768px) {
+    .workout_Container{
+        margin: 10px;
+        width:90%;
+        background-color: rgb(41, 68, 219);
+        padding: 1em;
+        border-radius: 20px;
+        padding-bottom: 0.5em;
+    }
+}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    .workout_Container{
+        margin: 10px;
+        width:90%;
+        background-color: rgb(41, 68, 219);
+        padding: 1em;
+        border-radius: 20px;
+        padding-bottom: 0.5em;
+    }
+}

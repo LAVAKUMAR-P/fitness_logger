@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      {(toggleMenu || screenWidth > 500) && (
+      {(toggleMenu || screenWidth > 541) && (
       <ul className="list">
         {
           NavbarData.map((data,index)=>{

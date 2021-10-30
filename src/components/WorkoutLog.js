@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import Loading_page from "./Loading_page";
 import Navbar from "./Navbar";
 import "./WorkoutLog.css";
+import "aos/dist/aos.css"
+import Aos from "aos";
+
 function WorkoutLog() {
   const [Loading, setLoading] = useState(true);
   const [List, setList] = useState([]);
@@ -11,6 +14,7 @@ function WorkoutLog() {
   let newweight;
   useEffect(() => {
     fetchData();
+    Aos.init({duration:1500})
   }, []);
   let fetchData = async () => {
     try {
@@ -112,7 +116,7 @@ function WorkoutLog() {
             </div>
             {List.map((items, index) => {
               return (
-                <div className="workout_Container" key={items._id}>
+                <div className="workout_Container" key={items._id} data-aos="fade-up">
                   <div className="W-Card_containet">
                     <div>Workout Name :</div>
                     <div>{items.message.name}</div>
@@ -120,7 +124,11 @@ function WorkoutLog() {
                     <div>{items.message.activity}</div>
                     <div>Workout count/range/Hrs :</div>
                     <div>{items.message.time}</div>
-                    <div>Comments</div>
+                    <div>Calories burned:</div>
+                    <div>{items.message.calories}</div>
+                    <div>Date :</div>
+                    <div>{items.message.date}</div>
+                    <div>Comments :</div>
                     <div>{items.message.comments}</div>
                   </div>
                   <div>

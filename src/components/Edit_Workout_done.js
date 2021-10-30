@@ -8,15 +8,19 @@ import axios from "axios";
 import Textfield from "./Textfield";
 import Loading_page from "./Loading_page";
 import MySelect from "./FormiclMySelect";
+import { workoutdata } from "./Workoutdata";
 
 function Edit_Workout_done(props) {
-
+  const [Workout, setWorkout] = useState([]);
   useEffect(() => {
     fetchData();
   }, []);
 
 
   const [Editdata, setEditdata] = useState("");
+ 
+
+
   let fetchData = async () => {
     try {
       let getData = await axios.get(
@@ -27,6 +31,13 @@ function Edit_Workout_done(props) {
           },
         }
       );
+      let Data = await axios.get("http://localhost:3001/allworkout", {
+        headers: {
+          Authorization: window.localStorage.getItem("app_token"),
+        },
+      });
+      console.log(Data);
+      setWorkout([...Data.data]);
       console.log(getData);
       setEditdata(getData.data.message);
       window.alert("data recived");
@@ -39,26 +50,11 @@ function Edit_Workout_done(props) {
     name: Yup.string()
       .max(30, "Must be 30 characters or less")
       .required("Required"),
-    activity: Yup.string()
-      .max(30, "Must be 15 characters or less")
-      .required("Ativity Required"),
     time: Yup.number().required("Number Required"),
     comments: Yup.string().max(30, "Must be 30 characters or less"),
   });
-  // const formik=useFormik({
-  //   initialValues:{
-  //     productName:"",
-  //     price:"",
-  //   },
-  //   validate={validate}
-  //   onSubmit: async (values) => {
-  //    console.log(values);
-  //   }
-
-  // })
   const Formvalues={
     name: Editdata.name,
-    activity: Editdata.activity,
     time: Editdata.time,
     comments: Editdata.comments,
   }
@@ -75,6 +71,18 @@ function Edit_Workout_done(props) {
           initialValues={Formvalues}
           validationSchema={validate}
           onSubmit={async (values) => {
+            let calories,activity;
+            for(let x in Workout){
+              if(Workout[x].type==values.name)
+              {
+              activity = Workout[x].catg;
+              calories = (Workout[x].calories*values.time);
+              console.log(calories);
+            }
+           }
+           values.calories=calories;
+             values.activity =activity ;
+             values.date=new Date().toLocaleDateString();
             try {
               let getData = await axios.put(
                 `http://localhost:3001/editData/${props.match.params.id}`,{ message: values },
@@ -100,17 +108,13 @@ function Edit_Workout_done(props) {
                 <Form>
                 <MySelect label="Enter Workout Name" name="name">
                       <option value="">Select Workout Name</option>
-                      <option value="Running">Running</option>
-                      <option value="Walking">Walking</option>
-                      <option value="Step walk">Step walk</option>
-                      <option value="Skiping">Skiping</option>
-                    </MySelect>
-             
-
-                    <MySelect label="Type of activity" name="activity">
-                      <option value="">Select Type of activity</option>
-                      <option value="Cardio">Cardio</option>
-                      <option value="others">others</option>
+                      {
+                        Workout.map((item,index)=>{
+                          return(
+                            <option value={item.type} key={index*5}>{item.type}</option>
+                          );
+                        })
+                      }
                     </MySelect>
 
                   <Textfield
@@ -135,9 +139,6 @@ function Edit_Workout_done(props) {
             </div>
           )}
         </Formik>
-        <Link to="/login">
-          <button className="WD-buttons">next</button>
-        </Link>
       </div>
     </div>
     }

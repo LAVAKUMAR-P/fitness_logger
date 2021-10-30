@@ -1,16 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 *{
     margin: 0px;
     padding: 0px;
 }
-
 /*BACKGROUNG IMAGE CSS*/
-.image {
+.home_background {
     background: rgba(0, 0, 0, 0.7) url("./images/home.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover !important;
     background-blend-mode: darken;
     height: 100vh;
+    padding-bottom: 2em;
+    color: #fff;
   }
 
 /*Logout-button-position*/
@@ -19,6 +21,39 @@
     display: flex;
     
     justify-content: flex-end;
+
+}
+
+/*container at top*/
+.H-first_container{
+    border-radius: 10px;
+    background-color: #fff;
+    color: black;
+    font-size: 1em;
+    padding: 1em;
+    margin: 1em;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+/*title font size*/
+.H-font{
+    font-size: 2em;
+}
+/*container position*/
+.H-content-position{
+   display: grid;
+   place-items: center;
+}
+
+.H-overallcontent{
+    height: 100vh;
+}
+
+/*gird for cards*/
+.H-gird{
+    display: grid;
+    grid-template-columns: 25em 25em 25em;
 }
 
 /*css for buttons*/
@@ -38,4 +73,34 @@
     background-color: rgba(20, 20, 143, 0.774);
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
+}
+
+@media screen and (min-device-width: 270px) and (max-device-width: 768px) {
+    .H-gird{
+        display: grid;
+        grid-template-columns: 1fr ;
+    }  
+    .H-font{
+        font-size: 1em;
+    }
+    .H-buttons{
+        padding:0.3em;
+        margin: 0.5em;
+    }
+    .Logout-button-position{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    
+    }
+}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    .H-gird{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    } 
+    .H-font{
+        padding:0.3em;
+        font-size: 1.5em;
+    } 
 }

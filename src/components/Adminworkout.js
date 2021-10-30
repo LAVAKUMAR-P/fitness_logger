@@ -10,7 +10,7 @@ import "aos/dist/aos.css";
 import Aos from "aos";
 import { Link } from "react-router-dom";
 
-function Adminusers() {
+function Adminworkout() {
   const [Loading, setLoading] = useState(true);
   const [List, setList] = useState([]);
   let history = useHistory();
@@ -25,11 +25,12 @@ function Adminusers() {
 
   let fetchData = async () => {
     try {
-      let getdata = await axios.get("http://localhost:3001/getalluser", {
+      let getdata = await axios.get("http://localhost:3001/allworkout", {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
       });
+      console.log(getdata);
       setList([...getdata.data]);
       setLoading(false);
     } catch (error) {
@@ -40,57 +41,26 @@ function Adminusers() {
         window.alert("you are not allowed to come here");
         history.push("/");
       } else {
+        setLoading(false);
         console.log(error);
         window.alert("Check your network");
       }
     }
   };
 
-  let makeadmin = async (mail) => {
+  let handledelete = async (id) => {
     try {
-      let ok = window.confirm("Are you want make admin?");
+      let ok = window.confirm("Are you want Delete data?");
       if (ok) {
-        await axios.post(
-          `http://localhost:3001/makeadmin`,
-          {
-            email: mail,
+        await axios.delete(`http://localhost:3001/deleteworkout/${id}`, {
+          headers: {
+            Authorization: window.localStorage.getItem("app_token"),
           },
-          {
-            headers: {
-              Authorization: window.localStorage.getItem("app_token"),
-            },
-          }
-        );
+        });
         await fetchData();
-        window.alert("Chaned to admin sucessfully!......");
+        window.alert("Deleted sucessfully!......");
       } else {
-        window.alert("Don't worry you sucessfully canceled Make admin......");
-      }
-    } catch (error) {
-      console.log(error);
-      window.alert("Check your network");
-    }
-  };
-
-  let removeadmin = async (mail) => {
-    try {
-      let ok = window.confirm("Are you want make admin?");
-      if (ok) {
-        await axios.post(
-          `http://localhost:3001/removeadmin`,
-          {
-            email: mail,
-          },
-          {
-            headers: {
-              Authorization: window.localStorage.getItem("app_token"),
-            },
-          }
-        );
-        await fetchData();
-        window.alert("Chaned to user sucessfully!......");
-      } else {
-        window.alert("Don't worry you sucessfully canceled remove admin......");
+        window.alert("Don't worry you sucessfully canceled Delete......");
       }
     } catch (error) {
       console.log(error);
@@ -108,9 +78,8 @@ function Adminusers() {
           <div>
             <div className="workout_Container_position">
               <div className="export_document_position">
-                <ExportCSV csvData={viewers} fileName={fileName} />
-                <Link to={`/adminworkoutall`}>
-                  <button className="E-buttons">Workout List</button>
+                <Link to={`/admin`}>
+                  <button className="E-buttons">Back to admin users</button>
                 </Link>
                 <Link to={`/adminworkout`}>
                   <button className="E-buttons">Create workout</button>
@@ -118,7 +87,7 @@ function Adminusers() {
               </div>
               <div className="workout_Container">
                 <div className="W-Card_containet">
-                  <div>Totel users :</div>
+                  <div>Totel Workout :</div>
                   <div>{List.length}</div>
                   <div>
                     <h5>All user Data</h5>
@@ -133,31 +102,29 @@ function Adminusers() {
                     data-aos="fade-up"
                   >
                     <div className="W-Card_containet">
-                      <div>User Name :</div>
-                      <div>{items.firstName}</div>
-                      <div>User Lastname:</div>
-                      <div>{items.lastName}</div>
-                      <div>Email id:</div>
-                      <div>{items.email}</div>
-                      <div>Admin</div>
-                      <div>{items.admin ? "true" : "false"}</div>
+                      <div>Worout Type:</div>
+                      <div>{items.type}</div>
+                      <div>category</div>
+                      <div>{items.catg}</div>
+                      <div>set and unit</div>
+                      <div>
+                        {items.set} {items.unit}
+                      </div>
+                      <div>Date</div>
+                      <div>{items.date}</div>
                     </div>
                     <div>
-                      {items.admin ? (
-                        <button
-                          className="WL-buttons"
-                          onClick={() => removeadmin(items.email)}
-                        >
-                          Remove admin
-                        </button>
-                      ) : (
-                        <button
-                          className="WL-buttons"
-                          onClick={() => makeadmin(items.email)}
-                        >
-                          Add admin
-                        </button>
-                      )}
+                      <button
+                        className="WL-buttons"
+                        onClick={() => handledelete(items._id)}
+                      >
+                        Delete
+                      </button>
+
+                      <Link to={`/EditworkoutA/${items._id}`}>
+                        {" "}
+                        <button className="WL-buttons">Edit</button>
+                      </Link>
                     </div>
                   </div>
                 );
@@ -170,4 +137,4 @@ function Adminusers() {
   );
 }
 
-export default Adminusers;
+export default Adminworkout;

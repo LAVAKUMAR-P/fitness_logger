@@ -1,10 +1,8 @@
 /*excel download button postion*/
 .export_document_position{
-  position: absolute;
-  left: 0px;
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.5em 2em 0.5em 2em;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 /*css for excel buttons*/
@@ -26,3 +24,13 @@
   cursor: pointer; 
   box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
 }
+
+
+@media screen and (min-device-width: 270px) and (max-device-width: 1024px) {
+  .export_document_position{
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+  }
+}
+

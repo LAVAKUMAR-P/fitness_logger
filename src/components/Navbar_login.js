@@ -31,7 +31,7 @@ export default function Navbar_login() {
 
   return (
     <nav>
-      {(toggleMenu || screenWidth > 500) && (
+      {(toggleMenu || screenWidth > 541) && (
       <ul className="list2">
         {
           NavbarData_login.map((data,index)=>{

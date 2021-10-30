@@ -1,26 +1,26 @@
 export const workoutdata=[
     {
-        type : "running",
+        type : "Running",
         calories : 60,
         set:1,
         unit: "km",
     },
     {
-        type:"walking",
+        type:"Walking",
         calories:42,
         set:1,
         unit: "km",
     }
      ,
     {
-        type : "step walk",
+        type : "Step walk",
         calories : 60,
         set:1000,
         unit: "steps",
     }
     ,
     {
-        type:"skipping",
+        type:"Skiping",
         calories:70,
         set:500,
         unit: "skips",

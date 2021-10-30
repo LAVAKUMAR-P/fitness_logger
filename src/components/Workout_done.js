@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Workout_done.css";
 import { Formik, Form } from "formik";
@@ -7,18 +7,59 @@ import Textfield from "./Textfield.js";
 import Navbar from "./Navbar";
 import axios from "axios";
 import MySelect from "./FormiclMySelect";
+import { workoutdata } from "./Workoutdata";
+import { array } from "yup/lib/locale";
 
 function Workout_done() {
+  
+  const [Loading, setLoading] = useState(true);
+  const [Workout, setWorkout] = useState([]);
+ let type=[];
+  let data;
+ 
+
+  useEffect(async() => {
+    await fetchData();
+  }, []);
+
+ 
+ 
+  let fetchData = async () => {
+    try {
+      let getdata = await axios.get("http://localhost:3001/allworkout", {
+        headers: {
+          Authorization: window.localStorage.getItem("app_token"),
+        },
+      });
+      console.log(getdata);
+      setWorkout([...getdata.data]);
+      let data
+      
+         console.log(type);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      if (error.message === "Request failed with status code 401") {
+        window.localStorage.removeItem("app_token");
+        window.localStorage.removeItem("action");
+        window.alert("you are not allowed to come here");
+      } else {
+        setLoading(false);
+        console.log(error);
+        window.alert("Check your network");
+      }
+    }
+  };
+
+
   const validate = Yup.object({
     name: Yup.string()
       .max(30, "Must be 30 characters or less")
       .required("Required"),
-    activity: Yup.string()
-      .max(30, "Must be 15 characters or less")
-      .required("Ativity Required"),
     time: Yup.number().required("Number Required"),
     comments: Yup.string().max(30, "Must be 30 characters or less"),
   });
+ 
   return (
     <>
       <Navbar/>
@@ -27,20 +68,35 @@ function Workout_done() {
           <Formik
             initialValues={{
               name: "",
-              activity: "",
               time: "",
               comments: "",
             }}
             validationSchema={validate}
             onSubmit={async (values) => {
+              let calories,activity;
+              for(let x in Workout){
+                if(Workout[x].type==values.name)
+                {
+                activity = Workout[x].catg;
+                calories = (Workout[x].calories*values.time);
+                console.log(calories);}
+             }
+             values.calories=calories;
+             values.activity =activity ;
+             values.date=new Date().toLocaleDateString();
               console.log(values);
-              let postData = await axios.post(`http://localhost:3001/createData`, { message: values },{
+              try {
+                let postData = await axios.post(`http://localhost:3001/createData`, { message: values },{
                 headers : {
                   "Authorization" : window.localStorage.getItem("app_token")
                 }
               })
               window.alert("data posted");
               console.log(values);
+              } catch (error) {
+                console.log(error);
+                window.alert("Check your network");
+              }
             }}
           >
             {(formik) => (
@@ -50,19 +106,14 @@ function Workout_done() {
                   <Form>
                   <MySelect label="Enter Workout Name" name="name">
                       <option value="">Select Workout Name</option>
-                      <option value="Running">Running</option>
-                      <option value="Walking">Walking</option>
-                      <option value="Step walk">Step walk</option>
-                      <option value="Skiping">Skiping</option>
+                      {
+                        Workout.map((item,index)=>{
+                          return(
+                            <option value={item.type} key={index*5}>{item.type}</option>
+                          );
+                        })
+                      }
                     </MySelect>
-             
-
-                    <MySelect label="Type of activity" name="activity">
-                      <option value="">Select Type of activity</option>
-                      <option value="Cardio">Cardio</option>
-                      <option value="others">others</option>
-                    </MySelect>
-
                     <Textfield
                       label="Time spent at activity(sets/time)"
                       name="time"
