@@ -34,10 +34,10 @@ function App() {
          <Route path="/admin" component={Adminusers} exact={true}/>
          <Route path="/workoutlog" component={WorkoutLog} exact={true}/>
          <Route path="/forgetpassword" component={Forgotpassword} exact={true}/>
-         <Route path="/password-reset/:id/:id" component={Resetpassword} exact={true}/>
          <Route path="/EditWorkout/:id" component={Edit_Workout_done} exact={true}/>
          <Route path="/Editbmi/:id" component={BmicalcEdit} exact={true}/>
          <Route path="/EditworkoutA/:id" component={EditworkoutA} exact={true}/>
+         <Route path="/password-reset/:userId/:token" component={Resetpassword} exact={true}/>
      </Switch>
      </Router>
     </>

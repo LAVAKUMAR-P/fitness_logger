@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./Workout_done.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -7,8 +6,7 @@ import Textfield from "./Textfield.js";
 import Navbar from "./Navbar";
 import axios from "axios";
 import MySelect from "./FormiclMySelect";
-import { workoutdata } from "./Workoutdata";
-import { array } from "yup/lib/locale";
+
 
 function Workout_done() {
   
@@ -130,9 +128,6 @@ function Workout_done() {
               </div>
             )}
           </Formik>
-          <Link to="/login">
-            <button className="WD-buttons">next</button>
-          </Link>
         </div>
       </div>
     </>

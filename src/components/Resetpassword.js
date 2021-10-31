@@ -7,9 +7,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 
-function Resetpassword() {
+function Resetpassword(props) {
   const validate = Yup.object({
-    email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
       .min(6, "Password must be at least 6 charaters")
       .required("Password is required"),
@@ -19,6 +18,7 @@ function Resetpassword() {
   });
 
   let history = useHistory();
+  console.log(props);
   return (
     <>
       <div className="Register-image">
@@ -27,19 +27,18 @@ function Resetpassword() {
           <div >
             <Formik
               initialValues={{
-                email: "",
                 password: "",
                 confirmPassword: "",
               }}
               validationSchema={validate}
               onSubmit={async (values) => {
-                let data = {
+                let data = axios.post(`http://localhost:3001/${props.match.params.userId}/${props.match.params.token}
+                `,{
                   password: values.password,
-                  email: values.email,
-                };
+                })
                 try {
                   console.log(data + "postdata");
-                  history.push("/");
+                 window.alert(data);
                 } catch (error) {
                   if(error.message==="Request failed with status code 409"){
                     window.alert("Mailid is alredy redistered");
@@ -57,12 +56,6 @@ function Resetpassword() {
                   <div className="R-content">
                     <div className="R-login-title">Reset password</div>
                     <Form>
-                      <Textfield
-                        label="Email"
-                        name="email"
-                        type="email"
-                        placeholder="Enter email"
-                      />
                       <Textfield
                         label="password"
                         name="password"

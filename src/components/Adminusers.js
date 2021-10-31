@@ -9,6 +9,7 @@ import { ExportCSV } from "./ExportCSV";
 import "aos/dist/aos.css";
 import Aos from "aos";
 import { Link } from "react-router-dom";
+import {MdPersonRemove,MdPersonAddAlt1,MdOutlineViewList,MdCreate} from "react-icons/md";
 
 function Adminusers() {
   const [Loading, setLoading] = useState(true);
@@ -110,10 +111,10 @@ function Adminusers() {
               <div className="export_document_position">
                 <ExportCSV csvData={viewers} fileName={fileName} />
                 <Link to={`/adminworkoutall`}>
-                  <button className="E-buttons">Workout List</button>
+                  <button className="E-buttons"><MdOutlineViewList/>  Workout List</button>
                 </Link>
                 <Link to={`/adminworkout`}>
-                  <button className="E-buttons">Create workout</button>
+                  <button className="E-buttons"><MdCreate/> Create workout</button>
                 </Link>
               </div>
               <div className="workout_Container">
@@ -148,6 +149,7 @@ function Adminusers() {
                           className="WL-buttons"
                           onClick={() => removeadmin(items.email)}
                         >
+                          <MdPersonRemove/>{"  "}
                           Remove admin
                         </button>
                       ) : (
@@ -155,6 +157,7 @@ function Adminusers() {
                           className="WL-buttons"
                           onClick={() => makeadmin(items.email)}
                         >
+                          <MdPersonAddAlt1/>{"  "}
                           Add admin
                         </button>
                       )}

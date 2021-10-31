@@ -33,7 +33,7 @@ export default function Navbar() {
         {
           NavbarData.map((data,index)=>{
             return(
-              <Link to={data.path} className="items" onClick={toggleNav}>{data.title}</Link>
+              <Link to={data.path} className="items" onClick={toggleNav} key={index+7}>{data.title}</Link>
             )
           })
         }
