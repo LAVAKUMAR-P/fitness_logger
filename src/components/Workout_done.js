@@ -14,9 +14,6 @@ function Workout_done() {
   
   const [Loading, setLoading] = useState(true);
   const [Workout, setWorkout] = useState([]);
- let type=[];
-  let data;
- 
 
   useEffect(async() => {
     await fetchData();
@@ -33,9 +30,6 @@ function Workout_done() {
       });
       console.log(getdata);
       setWorkout([...getdata.data]);
-      let data
-      
-         console.log(type);
       setLoading(false);
     } catch (error) {
       setLoading(false);

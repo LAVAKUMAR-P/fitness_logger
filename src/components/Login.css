@@ -21,13 +21,16 @@
 
 
 .L-content{
-    display: grid;
-    place-items: center;
     width: 300px;
     background-color: rgba(12, 245, 32, 0.685);
     padding: 0.5em;
     border-radius: 0.5em;
    /* background-color:rgba(0, 0, 0, 0.7); */
+}
+
+.L-content-position{
+    display: grid;
+    place-items: center;
 }
 
 /*css for input fields*/
@@ -55,6 +58,12 @@
     margin-bottom: 0.5em;
 }
 
+/*forget password password css*/
+.forgetpassword-position{
+    display: flex;
+    justify-content: flex-end;
+    color: red;
+}
 
 /*css for buttons*/
 .L-buttons{

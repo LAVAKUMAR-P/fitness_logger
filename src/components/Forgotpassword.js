@@ -4,12 +4,12 @@ import { Formik, Form } from "formik";
 import "./Login.css";
 import Navbar_login from "./Navbar_login";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 
 function Forgotpassword() {
   const validate = Yup.object({
-    email: Yup.string().email("Email is invalid").required("Email is required")
+    email: Yup.string().email("Email is invalid").required("Email is required"),
   });
 
   let history = useHistory();
@@ -26,7 +26,11 @@ function Forgotpassword() {
             validationSchema={validate}
             onSubmit={async (values) => {
               try {
-               console.log(values);
+                let postData = await axios.post(
+                  `http://localhost:3001/forgetpassword`,{email:values.email}
+                );
+                console.log(postData);
+                window.alert("Check yourmail")
               } catch (error) {
                 console.log("error");
                 if (error.message === "Request failed with status code 401") {
@@ -42,10 +46,15 @@ function Forgotpassword() {
                 <div className="L-content">
                   <div className="L-login-title">Forgotpassword</div>
                   <Form>
-                    <Textfield label="Email" name="email" type="email" placeholder="Enter your mail id" />
-                      <button className="L-buttons" type="submit">
-                        submit
-                      </button>
+                    <Textfield
+                      label="Email"
+                      name="email"
+                      type="email"
+                      placeholder="Enter your mail id"
+                    />
+                    <button className="L-buttons" type="submit">
+                      submit
+                    </button>
                     <button className="L-buttons" type="reset">
                       Reset
                     </button>

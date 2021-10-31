@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import "./Login.css";
 import Navbar_login from "./Navbar_login";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 
 function Login() {
@@ -52,6 +52,7 @@ function Login() {
             {(formik) => (
               <div className="L-loginContainer">
                 <div className="L-content">
+                  <div className="L-content-position">
                   <div className="L-login-title">Login</div>
                   <Form>
                     <Textfield label="Email" name="email" type="email" />
@@ -67,7 +68,12 @@ function Login() {
                       Reset
                     </button>
                   </Form>
+                  </div>
+                  <div className="forgetpassword-position">
+                  <Link to="/forgetpassword">forgetpassword?</Link>
+                  </div>
                 </div>
+               
               </div>
             )}
           </Formik>
