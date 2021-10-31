@@ -9,16 +9,12 @@ import MySelect from "./FormiclMySelect";
 import env from "./settings";
 
 function Workout_done() {
-  
-  const [Loading, setLoading] = useState(true);
-  const [Workout, setWorkout] = useState([]);
-
   useEffect(async() => {
     await fetchData();
-  }, []);
+  }, []); 
+  
+  const [Workout, setWorkout] = useState([]);
 
- 
- 
   let fetchData = async () => {
     try {
       let getdata = await axios.get(`${env.api}/allworkout`, {
@@ -28,20 +24,26 @@ function Workout_done() {
       });
       
       setWorkout([...getdata.data]);
-      setLoading(false);
+     
     } catch (error) {
-      setLoading(false);
+      
       if (error.message === "Request failed with status code 401") {
         window.localStorage.removeItem("app_token");
         window.localStorage.removeItem("action");
         window.alert("you are not allowed to come here");
       } else {
-        setLoading(false);
+       
         console.log(error);
         window.alert("Check your network");
       }
     }
   };
+
+ 
+
+ 
+ 
+
 
 
   const validate = Yup.object({

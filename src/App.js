@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Bmicalc from './components/Bmicalc';
 import Home from './components/Home';
@@ -19,6 +18,7 @@ import Resetpassword from './components/Resetpassword';
 import Workout from './components/Workout';
 import Adminworkout from './components/Adminworkout';
 import EditworkoutA from './components/EditworkourA';
+
 function App() {
   return (
     <>

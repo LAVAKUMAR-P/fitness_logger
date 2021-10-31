@@ -4,7 +4,6 @@ import { Formik, Form } from "formik";
 import "./Login.css";
 import Navbar_login from "./Navbar_login";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 import env from "./settings";
 
@@ -12,8 +11,6 @@ function Forgotpassword() {
   const validate = Yup.object({
     email: Yup.string().email("Email is invalid").required("Email is required"),
   });
-
-  let history = useHistory();
 
   return (
     <>

@@ -22,11 +22,6 @@ function Adminworkout() {
   let history = useHistory();
   
 
-  useEffect(() => {
-    fetchData();
-    Aos.init({ duration: 1500 });
-  }, []);
-
   let fetchData = async () => {
     try {
       let getdata = await axios.get(`${env.api}/allworkout`, {
@@ -52,6 +47,11 @@ function Adminworkout() {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+    Aos.init({ duration: 1500 });
+  }, []);
+
   let handledelete = async (id) => {
     try {
       let ok = window.confirm("Are you want Delete data?");
@@ -61,7 +61,7 @@ function Adminworkout() {
             Authorization: window.localStorage.getItem("app_token"),
           },
         });
-        fetchData();
+        await fetchData();
         window.alert("Deleted sucessfully!......");
       } else {
         window.alert("Don't worry you sucessfully canceled Delete......");

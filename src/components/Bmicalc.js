@@ -22,11 +22,7 @@ function Bmicalc() {
 
   const saveValue = async () => {
     try {
-      if (bmiResult !== null && bmivalue !== null) {
-        console.log(Newvalue.your_height);
-        console.log(Newvalue.your_weight);
-        let postData = await axios.post(
-          `${env.api}/createbmi`,
+        let postData = await axios.post(`${env.api}/createbmi`,
           {
             height: Newvalue.your_height,
             weight: Newvalue.your_weight,
@@ -39,12 +35,8 @@ function Bmicalc() {
             },
           }
         );
-
+        
         window.alert("BMI data saved");
-      }
-      else{
-        window.alert("Sorry something went wrong kindly click calculate again");
-      } 
     } catch (error) {
       if (error.message === "Request failed with status code 409") {
         window.alert("your data is there you can only edit it");

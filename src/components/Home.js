@@ -15,7 +15,8 @@ function Home() {
   const [Loading, setLoading] = useState(true);
   const [Admin, setAdmin] = useState(false);
   const [Workout, setWorkout] = useState([]);
-  useEffect(async() => {
+
+  useEffect(() => {
     let admin =window.localStorage.getItem("action");
     setAdmin(admin);
     fetchData();

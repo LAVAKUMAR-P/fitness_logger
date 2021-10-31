@@ -20,10 +20,7 @@ function Adminusers() {
 
   const viewers = List;
 
-  useEffect(() => {
-    fetchData();
-    Aos.init({ duration: 1500 });
-  }, []);
+  
 
   let fetchData = async () => {
     try {
@@ -47,6 +44,11 @@ function Adminusers() {
       }
     }
   };
+
+  useEffect(() => {
+    fetchData();
+    Aos.init({ duration: 1500 });
+  }, []);
 
   let makeadmin = async (mail) => {
     try {

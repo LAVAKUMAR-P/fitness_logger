@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import "./Register.css";
 import Navbar_login from "./Navbar_login";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 import env from "./settings";
 
@@ -19,7 +18,7 @@ function Resetpassword(props) {
       .required("Confirm password is required"),
   });
 
-  let history = useHistory();
+ 
   
   return (
     <>
