@@ -16,12 +16,13 @@ function Bmicalc() {
 
   const [state, setstate] = useState("")
   const[value,setvalue]=useState(0)
-let  Newvalue;
-  const clearValue=()=>{
 
+  const clearValue=()=>{
+    setstate("")
   }
 
-  const saveValue = async () => {
+  const saveValue = async (values) => {
+      let Newvalue = values;
     try {
         let postData = await axios.post(`${env.api}/createbmi`,
           {
@@ -76,14 +77,8 @@ let  Newvalue;
 
                 setstate(bmiStatus);
                 values.Status=bmiStatus;
-
-                Newvalue = values;
-
-               
-
-                console.log(`${Newvalue.your_height}`);
-              
-                saveValue();
+                console.log(`${values.your_height}`);
+                saveValue(values);
               } catch (error) {
                 console.log(error);
               }
@@ -114,6 +109,8 @@ let  Newvalue;
                       <div>
                         <p>Your BMI is: {value} </p>
                         <p>You are currently: {state}</p>
+                      
+                      <button className="W-buttons" onClick={clearValue} >clear</button>
                       </div>
                     )}
                   </Form>

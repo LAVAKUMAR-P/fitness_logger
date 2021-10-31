@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import "./Bmicalc.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Navbar from "./Navbar";
-import { useState } from "react/cjs/react.development";
 import Textfield from "./Textfield";
 import axios from "axios";
 import { useHistory } from "react-router";
@@ -11,10 +10,9 @@ import env from "./settings";
 
 function BmicalcEdit(props) {
   const [Editdata, setEditdata] = useState("");
-  const [bmi, setbmi] = useState(null);
-  const [status, setStatus] = useState(null);
-  let Newvalue;
-  let bmiStatus=null;
+  const [state, setstate] = useState("")
+  const[value,setvalue]=useState(0)
+  
 let history=useHistory();
 
   useEffect(() => {
@@ -48,45 +46,32 @@ let history=useHistory();
   });
 
 
-  const saveValue = async (bmi,bmiStatus) => {
-    let bmiresults=bmi;
+  const saveValue = async (values) => {
+    let Newvalue = values;
     try {
-      if (bmiStatus !== null) {
-        console.log(Newvalue.your_height);
-        console.log(Newvalue.your_weight);
+      
+        
         let postData = await axios.put(
           `${env.api}/editbmi/${props.match.params.id}`,
           {
             height: Newvalue.your_height,
             weight: Newvalue.your_weight,
-            bmi: bmiresults,
-            bmiresult: bmiStatus,
+            bmi:Newvalue.bmiResult,
+            bmiresult:Newvalue.bmivalue,
           },
           {
             headers: {
               Authorization: window.localStorage.getItem("app_token"),
             },
-          }
-        );
-
+          });
         window.alert("data posted");
         history.push("/workoutlog")
-      }
-      else{
-        window.alert("Sorry something went wrong kindly click calculate again");
-      } 
+     
     } catch (error) {
-      if (error.message === "Request failed with status code 409") {
-        window.alert("your data is there you can only edit it");
-      } else {
-        window.alert("check your network");
-      }
+      window.alert("check your network");
     }
   };
 
-  const clearValue = () => {
-    setStatus("");
-  };
 
   return (
     <>
@@ -104,16 +89,19 @@ let history=useHistory();
                 let bmi = Number(
                   values.your_weight / (values.your_height / 100) ** 2
                 ).toFixed(2);
-                setbmi(bmi);
+                setvalue(bmi)
+                values.bmiResult= bmi
+               
+                let bmiStatus;
                 if (bmi < 18.5) bmiStatus = "Underweight";
                 else if (bmi >= 18.5 && bmi < 24.9) bmiStatus = "Normal";
                 else if (bmi >= 25 && bmi < 29.9) bmiStatus = "Overweight";
                 else bmiStatus = "Obese";
-                setStatus(bmiStatus);
-                Newvalue = values;
-                console.log(`${Newvalue.your_height}`);
-                console.log(bmi);
-                saveValue(bmi,bmiStatus)
+
+                setstate(bmiStatus);
+                values.Status=bmiStatus;
+                console.log(`${values.your_height}`);
+                saveValue(values);
               } catch (error) {
                 console.log(error);
               }
@@ -141,13 +129,10 @@ let history=useHistory();
                     <button className="W-buttons" type="reset">
                     Reset
                     </button>
-                    {status && (
+                    {state && (
                       <div>
-                        <p>Your BMI is: {bmi} </p>
-                        <p>You are currently: {status}</p>
-                        <button className="W-buttons" onClick={clearValue}>
-                          Clere
-                        </button>
+                        <p>Your BMI is: {value} </p>
+                        <p>You are currently: {state}</p>
                       </div>
                     )}
                   </Form>
