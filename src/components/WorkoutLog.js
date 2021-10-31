@@ -41,7 +41,7 @@ function WorkoutLog() {
       let ok = window.confirm("Are you want to delete data permently?");
       
       if (ok) {
-        await axios.delete(`${env.api}/${id}`, {
+        await axios.delete(`${env.api}/deletData/${id}`, {
           headers: {
             Authorization: window.localStorage.getItem("app_token"),
           },

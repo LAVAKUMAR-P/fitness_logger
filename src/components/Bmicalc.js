@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Bmicalc.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -7,6 +6,7 @@ import Navbar from "./Navbar";
 import { useState } from "react/cjs/react.development";
 import Textfield from "./Textfield";
 import axios from "axios";
+import env from "./settings";
 
 function Bmicalc() {
   const validate = Yup.object({
@@ -26,7 +26,7 @@ function Bmicalc() {
         console.log(Newvalue.your_height);
         console.log(Newvalue.your_weight);
         let postData = await axios.post(
-          `http://localhost:3001/createbmi`,
+          `${env.api}/createbmi`,
           {
             height: Newvalue.your_height,
             weight: Newvalue.your_weight,
@@ -40,7 +40,7 @@ function Bmicalc() {
           }
         );
 
-        window.alert("data posted");
+        window.alert("BMI data saved");
       }
       else{
         window.alert("Sorry something went wrong kindly click calculate again");

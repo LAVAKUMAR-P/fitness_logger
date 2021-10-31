@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import { workoutdata } from "./Workoutdata";
 import { useHistory } from "react-router";
+import env from "./settings";
 
 function EditworkoutA(props) {
   const [Workout, setWorkout] = useState([...workoutdata]);
@@ -19,23 +20,21 @@ function EditworkoutA(props) {
   let fetchData = async () => {
     try {
       let getData = await axios.get(
-        `http://localhost:3001/getworkout/${props.match.params.id}`,
+        `${env.api}/getworkout/${props.match.params.id}`,
         {
           headers: {
             Authorization: window.localStorage.getItem("app_token"),
           },
         }
       );
-      console.log(getData);
       setWorkout(getData.data);
-      window.alert("data recived");
     } catch (error) {
       window.alert("failed to data recived");
       console.log(error);
     }
   };
 
-  console.log(Workout[0]);
+  
   const validate = Yup.object({
     type: Yup.string()
       .max(30, "Must be 30 characters or less")
@@ -65,10 +64,10 @@ function EditworkoutA(props) {
             validationSchema={validate}
             onSubmit={async (values) => {
               values.date = new Date().toLocaleDateString();
-              console.log(values);
+              
               try {
                 let postData = await axios.put(
-                  `http://localhost:3001/editworkout/${props.match.params.id}`,
+                  `${env.api}/editworkout/${props.match.params.id}`,
                   {
                     type: values.type,
                     calories: values.calories,

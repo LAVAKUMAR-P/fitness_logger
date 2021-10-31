@@ -10,6 +10,7 @@ import "aos/dist/aos.css";
 import Aos from "aos";
 import { Link } from "react-router-dom";
 import {MdPersonRemove,MdPersonAddAlt1,MdOutlineViewList,MdCreate} from "react-icons/md";
+import env from "./settings";
 
 function Adminusers() {
   const [Loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ function Adminusers() {
 
   let fetchData = async () => {
     try {
-      let getdata = await axios.get("http://localhost:3001/getalluser", {
+      let getdata = await axios.get(`${env.api}/getalluser`, {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
@@ -52,7 +53,7 @@ function Adminusers() {
       let ok = window.confirm("Are you want make admin?");
       if (ok) {
         await axios.post(
-          `http://localhost:3001/makeadmin`,
+          `${env.api}/makeadmin`,
           {
             email: mail,
           },
@@ -75,10 +76,10 @@ function Adminusers() {
 
   let removeadmin = async (mail) => {
     try {
-      let ok = window.confirm("Are you want make admin?");
+      let ok = window.confirm("Are you want to Remove admin?");
       if (ok) {
         await axios.post(
-          `http://localhost:3001/removeadmin`,
+          `${env.api}/removeadmin`,
           {
             email: mail,
           },

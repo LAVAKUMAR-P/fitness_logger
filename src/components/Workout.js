@@ -7,10 +7,13 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import { workoutdata } from "./Workoutdata";
 import { Link } from "react-router-dom";
+import env from "./settings";
+import { useHistory } from "react-router-dom";
 
 function Workout() {
   const [Workout, setWorkout] = useState([...workoutdata]);
-  console.log(Workout[0]);
+  let history=useHistory();
+
   const validate = Yup.object({
     type: Yup.string()
       .max(30, "Must be 30 characters or less")
@@ -52,10 +55,9 @@ function Workout() {
             validationSchema={validate}
             onSubmit={async (values) => {
               values.date = new Date().toLocaleDateString();
-              console.log(values);
               try {
                 let postData = await axios.post(
-                  `http://localhost:3001/workout`,
+                  `${env.api}/workout`,
                   {
                     type: values.type,
                     calories: values.calories,
@@ -71,6 +73,7 @@ function Workout() {
                   }
                 );
                 window.alert("Workout posted");
+                history.push("/adminworkoutall")
               } catch (error) {
                 if (error.message === "Request failed with status code 401") {
                   window.localStorage.removeItem("app_token");

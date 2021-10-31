@@ -6,6 +6,8 @@ import Navbar_login from "./Navbar_login";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
+import env from "./settings";
+
 
 function Resetpassword(props) {
   const validate = Yup.object({
@@ -18,7 +20,7 @@ function Resetpassword(props) {
   });
 
   let history = useHistory();
-  console.log(props);
+  
   return (
     <>
       <div className="Register-image">
@@ -32,23 +34,24 @@ function Resetpassword(props) {
               }}
               validationSchema={validate}
               onSubmit={async (values) => {
-                let data = axios.post(`http://localhost:3001/${props.match.params.userId}/${props.match.params.token}
-                `,{
-                  password: values.password,
-                })
                 try {
-                  console.log(data + "postdata");
-                 window.alert(data);
+                  let data = axios.post(`${env.api}/${props.match.params.userId}/${props.match.params.token}
+                  `,{
+                    password: values.password,
+                  })
+                 window.alert("password changed");
                 } catch (error) {
                   if(error.message==="Request failed with status code 409"){
-                    window.alert("Mailid is alredy redistered");
+                    window.alert("Something went wrong");
+                    console.log(error);
                   }
                   else{
-                    window.alert("check your network");
+                    window.alert("Something went wrong / check your network");
+                    console.log(error);
                   }
                 }
 
-                console.log(data);
+                
               }}
             >
               {(formik) => (

@@ -6,6 +6,8 @@ import Navbar_login from "./Navbar_login";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
+import env from "./settings";
+
 
 function Register() {
   const validate = Yup.object({
@@ -30,7 +32,7 @@ function Register() {
       <div className="Register-image">
         <Navbar_login />
         <section className="R-loginContainer">
-          <div >
+          <div>
             <Formik
               initialValues={{
                 firstName: "",
@@ -48,23 +50,19 @@ function Register() {
                   email: values.email,
                 };
                 try {
-                  let postData = await axios.post(
-                    "http://localhost:3001/register",
-                    data
-                  );
-                  window.alert("data posted");
-                  console.log(postData + "postdata");
+                  let postData = await axios.post(`${env.api}/register`, data);
+                  window.alert("User registered");
+
                   history.push("/");
                 } catch (error) {
-                  if(error.message==="Request failed with status code 409"){
+                  if (error.message === "Request failed with status code 409") {
                     window.alert("Mailid is alredy redistered");
-                  }
-                  else{
+                    console.log(error);
+                  } else {
                     window.alert("check your network");
+                    console.log(error);
                   }
                 }
-
-                console.log(data);
               }}
             >
               {(formik) => (
@@ -102,7 +100,7 @@ function Register() {
                         type="password"
                         placeholder="Confirm Password"
                       />
-                       <button className="R-buttons" type="submit">
+                      <button className="R-buttons" type="submit">
                         Register
                       </button>
                       <button className="R-buttons" type="reset">

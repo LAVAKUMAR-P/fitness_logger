@@ -8,15 +8,19 @@ import "./Adminusers.css";
 import "aos/dist/aos.css";
 import Aos from "aos";
 import { Link } from "react-router-dom";
-import {MdDelete,MdOutlineEditCalendar,MdCreate,MdOutlineKeyboardBackspace} from "react-icons/md";
+import {
+  MdDelete,
+  MdOutlineEditCalendar,
+  MdCreate,
+  MdOutlineKeyboardBackspace,
+} from "react-icons/md";
+import env from "./settings";
 
 function Adminworkout() {
   const [Loading, setLoading] = useState(true);
   const [List, setList] = useState([]);
   let history = useHistory();
-  const fileName = "FitnessLog_user_Data";
-
-  const viewers = List;
+  
 
   useEffect(() => {
     fetchData();
@@ -25,12 +29,12 @@ function Adminworkout() {
 
   let fetchData = async () => {
     try {
-      let getdata = await axios.get("http://localhost:3001/allworkout", {
+      let getdata = await axios.get(`${env.api}/allworkout`, {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
       });
-      console.log(getdata);
+      
       setList([...getdata.data]);
       setLoading(false);
     } catch (error) {
@@ -52,7 +56,7 @@ function Adminworkout() {
     try {
       let ok = window.confirm("Are you want Delete data?");
       if (ok) {
-        await axios.delete(`http://localhost:3001/deleteworkout/${id}`, {
+        await axios.delete(`${env.api}/deleteworkout/${id}`, {
           headers: {
             Authorization: window.localStorage.getItem("app_token"),
           },
@@ -79,10 +83,16 @@ function Adminworkout() {
             <div className="workout_Container_position">
               <div className="export_document_position">
                 <Link to={`/admin`}>
-                  <button className="E-buttons"> <MdOutlineKeyboardBackspace/> Back to admin users</button>
+                  <button className="E-buttons">
+                    {" "}
+                    <MdOutlineKeyboardBackspace /> Back to admin users
+                  </button>
                 </Link>
                 <Link to={`/adminworkout`}>
-                  <button className="E-buttons"> <MdCreate/> Create workout</button>
+                  <button className="E-buttons">
+                    {" "}
+                    <MdCreate /> Create workout
+                  </button>
                 </Link>
               </div>
               <div className="workout_Container">
@@ -118,12 +128,14 @@ function Adminworkout() {
                         className="WL-buttons"
                         onClick={() => handledelete(items._id)}
                       >
-                       <MdDelete/> Delete
+                        <MdDelete /> Delete
                       </button>
 
                       <Link to={`/EditworkoutA/${items._id}`}>
-                       
-                        <button className="WL-buttons"> <MdOutlineEditCalendar/> Edit</button>
+                        <button className="WL-buttons">
+                          {" "}
+                          <MdOutlineEditCalendar /> Edit
+                        </button>
                       </Link>
                     </div>
                   </div>

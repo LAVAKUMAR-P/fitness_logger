@@ -6,6 +6,7 @@ import Navbar_login from "./Navbar_login";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
+import env from "./settings";
 
 function Forgotpassword() {
   const validate = Yup.object({
@@ -27,16 +28,16 @@ function Forgotpassword() {
             onSubmit={async (values) => {
               try {
                 let postData = await axios.post(
-                  `http://localhost:3001/forgetpassword`,{email:values.email}
+                  `${env.api}/forgetpassword`,{email:values.email}
                 );
                 console.log(postData);
                 window.alert("Check yourmail")
               } catch (error) {
                 console.log("error");
                 if (error.message === "Request failed with status code 401") {
-                  window.alert("user name or password mismatch");
+                  window.alert("mail mismatch");
                 } else {
-                  window.alert("Check your network");
+                  window.alert("Check your network / mail not found");
                 }
               }
             }}

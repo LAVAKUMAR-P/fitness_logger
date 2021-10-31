@@ -7,6 +7,7 @@ import { useState } from "react/cjs/react.development";
 import Textfield from "./Textfield";
 import axios from "axios";
 import { useHistory } from "react-router";
+import env from "./settings";
 
 function BmicalcEdit(props) {
   const [Editdata, setEditdata] = useState("");
@@ -23,7 +24,7 @@ let history=useHistory();
   let fetchData = async () => {
     try {
       let getData = await axios.get(
-        `http://localhost:3001/getbmiedit/${props.match.params.id}`,
+        `${env.api}/getbmiedit/${props.match.params.id}`,
         {
           headers: {
             Authorization: window.localStorage.getItem("app_token"),
@@ -54,7 +55,7 @@ let history=useHistory();
         console.log(Newvalue.your_height);
         console.log(Newvalue.your_weight);
         let postData = await axios.put(
-          `http://localhost:3001/editbmi/${props.match.params.id}`,
+          `${env.api}/editbmi/${props.match.params.id}`,
           {
             height: Newvalue.your_height,
             weight: Newvalue.your_weight,
