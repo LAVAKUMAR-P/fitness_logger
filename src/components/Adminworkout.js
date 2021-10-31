@@ -61,7 +61,7 @@ function Adminworkout() {
             Authorization: window.localStorage.getItem("app_token"),
           },
         });
-        await fetchData();
+        fetchData();
         window.alert("Deleted sucessfully!......");
       } else {
         window.alert("Don't worry you sucessfully canceled Delete......");
