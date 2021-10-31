@@ -1,12 +1,12 @@
-import React from "react";
+import React ,{ useState }from "react";
 import "./Bmicalc.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Navbar from "./Navbar";
-import { useState } from "react/cjs/react.development";
 import Textfield from "./Textfield";
 import axios from "axios";
 import env from "./settings";
+
 
 function Bmicalc() {
   const validate = Yup.object({
@@ -14,11 +14,12 @@ function Bmicalc() {
     your_weight: Yup.number().required("weight is required"),
   });
 
-  const [bmi, setbmi] = useState("");
-  const [status, setStatus] = useState("");
-  let bmiResult = 0;
-  let bmivalue="";
-  let Newvalue;
+  const [state, setstate] = useState("")
+  const[value,setvalue]=useState(0)
+let  Newvalue;
+  const clearValue=()=>{
+
+  }
 
   const saveValue = async () => {
     try {
@@ -26,8 +27,8 @@ function Bmicalc() {
           {
             height: Newvalue.your_height,
             weight: Newvalue.your_weight,
-            bmi: bmiResult,
-            bmiresult: bmivalue,
+            bmi:Newvalue.bmiResult,
+            bmiresult:Newvalue.bmivalue,
           },
           {
             headers: {
@@ -46,9 +47,7 @@ function Bmicalc() {
     }
   };
 
-  const clearValue = () => {
-    setStatus("");
-  };
+ 
 
   return (
     <>
@@ -66,18 +65,24 @@ function Bmicalc() {
                 let bmi = Number(
                   values.your_weight / (values.your_height / 100) ** 2
                 ).toFixed(2);
-                setbmi(bmi);
-                bmiResult = bmi;
+                setvalue(bmi)
+                values.bmiResult= bmi
+               
                 let bmiStatus;
                 if (bmi < 18.5) bmiStatus = "Underweight";
                 else if (bmi >= 18.5 && bmi < 24.9) bmiStatus = "Normal";
                 else if (bmi >= 25 && bmi < 29.9) bmiStatus = "Overweight";
                 else bmiStatus = "Obese";
-                setStatus(bmiStatus);
+
+                setstate(bmiStatus);
+                values.Status=bmiStatus;
+
                 Newvalue = values;
-                bmivalue=bmiStatus;
+
+               
+
                 console.log(`${Newvalue.your_height}`);
-                console.log(bmi);
+              
                 saveValue();
               } catch (error) {
                 console.log(error);
@@ -105,13 +110,10 @@ function Bmicalc() {
                     <button className="W-buttons" type="reset">
                       Reset
                     </button>
-                    {status && (
+                    { state && (
                       <div>
-                        <p>Your BMI is: {bmi} </p>
-                        <p>You are currently: {status}</p>
-                        <button className="W-buttons" onClick={clearValue}>
-                          Clere
-                        </button>
+                        <p>Your BMI is: {value} </p>
+                        <p>You are currently: {state}</p>
                       </div>
                     )}
                   </Form>
