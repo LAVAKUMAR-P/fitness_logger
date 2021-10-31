@@ -28,13 +28,13 @@ function App() {
          <Route path="/register" component={Register} exact={true}/>
          <Route path="/home" component={Home} exact={true}/>
          <Route path="/workout" component={Workout_done} exact={true}/>
-         <Route path="/bmicalc" component={Bmicalc} exact={true}/>
          <Route path="/adminworkout" component={Workout} exact={true}/>
          <Route path="/adminworkoutall" component={Adminworkout} exact={true}/>
          <Route path="/admin" component={Adminusers} exact={true}/>
          <Route path="/workoutlog" component={WorkoutLog} exact={true}/>
          <Route path="/forgetpassword" component={Forgotpassword} exact={true}/>
          <Route path="/EditWorkout/:id" component={Edit_Workout_done} exact={true}/>
+         <Route path="/workout/bmicalc" component={Bmicalc} exact={true}/>
          <Route path="/Editbmi/:id" component={BmicalcEdit} exact={true}/>
          <Route path="/EditworkoutA/:id" component={EditworkoutA} exact={true}/>
          <Route path="/password-reset/:userId/:token" component={Resetpassword} exact={true}/>
