@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import './Navbar.css'
 import './Navbar_login.css'
 import * as AiIcons from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import { NavbarData_login } from './Navbardata_data';
+import Logo from "./images/Logofit.png";
 
 
 export default function Navbar_login() {
@@ -16,7 +16,7 @@ export default function Navbar_login() {
   }
 
   useEffect(() => {
-
+  
     const changeWidth = () => {
       setScreenWidth(window.innerWidth);
     }
@@ -31,8 +31,9 @@ export default function Navbar_login() {
 
   return (
     <nav>
+        <img src={Logo} alt="image"/>
       {(toggleMenu || screenWidth > 541) && (
-      <ul className="list2">
+      <ul className="list">
         {
           NavbarData_login.map((data,index)=>{
             return(

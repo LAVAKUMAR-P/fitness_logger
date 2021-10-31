@@ -34,7 +34,7 @@ function Resetpassword(props) {
               validationSchema={validate}
               onSubmit={async (values) => {
                 try {
-                  let data = axios.post(`${env.api}/${props.match.params.userId}/${props.match.params.token}
+                  let data =await axios.post(`${env.api}/${props.match.params.userId}/${props.match.params.token}
                   `,{
                     password: values.password,
                   })

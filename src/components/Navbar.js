@@ -3,6 +3,7 @@ import './Navbar.css'
 import * as AiIcons from "react-icons/ai";
 import {NavbarData} from './Navbardata';
 import { Link } from 'react-router-dom';
+import Logo from "./images/Logofit.png" 
 export default function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
@@ -28,6 +29,7 @@ export default function Navbar() {
 
   return (
     <nav>
+      <img src={Logo} alt="image"/>
       {(toggleMenu || screenWidth > 541) && (
       <ul className="list">
         {
