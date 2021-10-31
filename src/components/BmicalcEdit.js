@@ -30,12 +30,10 @@ let history=useHistory();
           },
         }
       );
-      console.log("------------------------------------------------");
-      console.log(getData.data);
-      console.log("------------------------------------------------");
+     
 
       setEditdata(getData.data);
-      console.log(Editdata);
+    
       
     } catch (error) {
       window.alert("failed to data recived");
@@ -137,10 +135,10 @@ let history=useHistory();
                       type="number"
                     />
                     <button className="W-buttons" type="submit" to="/workoutlog">
-                      Calculate
+                     Calculate
                     </button>
                     <button className="W-buttons" type="reset">
-                      Reset
+                    Reset
                     </button>
                     {status && (
                       <div>

@@ -5,10 +5,10 @@ import Loading_page from "./Loading_page";
 import Navbar from "./Navbar";
 import "./WorkoutLog.css";
 import "./Adminusers.css";
-import { ExportCSV } from "./ExportCSV";
 import "aos/dist/aos.css";
 import Aos from "aos";
 import { Link } from "react-router-dom";
+import {MdDelete,MdOutlineEditCalendar,MdCreate,MdOutlineKeyboardBackspace} from "react-icons/md";
 
 function Adminworkout() {
   const [Loading, setLoading] = useState(true);
@@ -79,10 +79,10 @@ function Adminworkout() {
             <div className="workout_Container_position">
               <div className="export_document_position">
                 <Link to={`/admin`}>
-                  <button className="E-buttons">Back to admin users</button>
+                  <button className="E-buttons"> <MdOutlineKeyboardBackspace/> Back to admin users</button>
                 </Link>
                 <Link to={`/adminworkout`}>
-                  <button className="E-buttons">Create workout</button>
+                  <button className="E-buttons"> <MdCreate/> Create workout</button>
                 </Link>
               </div>
               <div className="workout_Container">
@@ -118,12 +118,12 @@ function Adminworkout() {
                         className="WL-buttons"
                         onClick={() => handledelete(items._id)}
                       >
-                        Delete
+                       <MdDelete/> Delete
                       </button>
 
                       <Link to={`/EditworkoutA/${items._id}`}>
-                        {" "}
-                        <button className="WL-buttons">Edit</button>
+                       
+                        <button className="WL-buttons"> <MdOutlineEditCalendar/> Edit</button>
                       </Link>
                     </div>
                   </div>

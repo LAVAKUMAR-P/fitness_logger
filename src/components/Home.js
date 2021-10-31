@@ -8,6 +8,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import HomeCard from "./HomeCard";
 import Loading_page from "./Loading_page";
 import axios from "axios";
+import env from "./settings";
 
 function Home() {
   let history = useHistory();
@@ -24,12 +25,12 @@ function Home() {
 
   let fetchData = async () => {
     try {
-      let getdata = await axios.get("http://localhost:3001/allworkout", {
+      let getdata = await axios.get(`${env.api}/allworkout`, {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
       });
-      console.log(getdata);
+    
       setWorkout([...getdata.data]);
       setLoading(false);
     } catch (error) {

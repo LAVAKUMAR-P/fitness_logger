@@ -6,6 +6,8 @@ import Navbar from "./Navbar";
 import "./WorkoutLog.css";
 import "aos/dist/aos.css"
 import Aos from "aos";
+import { MdOutlineEditCalendar,MdCreate ,MdDelete} from "react-icons/md";
+import env from "./settings";
 
 function WorkoutLog() {
   const [Loading, setLoading] = useState(true);
@@ -18,23 +20,14 @@ function WorkoutLog() {
   }, []);
   let fetchData = async () => {
     try {
-      let Data = await axios.get("http://localhost:3001/getData", {
+      let Data = await axios.get(`${env.api}/getData`, {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
       });
-      console.log(Data);
       setList([...Data.data.registerSchemas]);
       setBmi([...Data.data.BMIMessages]);
       setLoading(false);
-      console.log(
-        "------------------------------------------------------------"
-      );
-
-      console.log(Bmi);
-      console.log(
-        "------------------------------------------------------------"
-      );
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -46,9 +39,9 @@ function WorkoutLog() {
   let handleDelete = async (id) => {
     try {
       let ok = window.confirm("Are you want to delete data permently?");
-      console.log(id);
+      
       if (ok) {
-        await axios.delete(`http://localhost:3001/deletData/${id}`, {
+        await axios.delete(`${env.api}/${id}`, {
           headers: {
             Authorization: window.localStorage.getItem("app_token"),
           },
@@ -104,11 +97,11 @@ function WorkoutLog() {
               <div>
               {Bmi.length === 0 ? (
                   <Link to={`/bmicalc`}>
-                  <button className="WL-buttons">Create BMI</button>
+                  <button className="WL-buttons"> <MdCreate/> Create BMI</button>
                   </Link>
                 ) : (
                   <Link to={`/Editbmi/${Bmi[0]._id}`}>
-                      <button className="WL-buttons">Edit</button>
+                      <button className="WL-buttons"> <MdOutlineEditCalendar/> Edit</button>
                 </Link>
                 )}
                 
@@ -133,13 +126,13 @@ function WorkoutLog() {
                   </div>
                   <div>
                     <Link to={`/EditWorkout/${items._id}`}>
-                      <button className="WL-buttons">Edit</button>
+                      <button className="WL-buttons"> <MdOutlineEditCalendar/>  Edit</button>
                     </Link>
                     <button
                       onClick={() => handleDelete(items._id)}
                       className="WL-buttons"
                     >
-                      Delete
+                      <MdDelete/> Delete
                     </button>
                   </div>
                 </div>

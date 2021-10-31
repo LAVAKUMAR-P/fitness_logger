@@ -6,7 +6,7 @@ import Textfield from "./Textfield.js";
 import Navbar from "./Navbar";
 import axios from "axios";
 import MySelect from "./FormiclMySelect";
-
+import env from "./settings";
 
 function Workout_done() {
   
@@ -21,12 +21,12 @@ function Workout_done() {
  
   let fetchData = async () => {
     try {
-      let getdata = await axios.get("http://localhost:3001/allworkout", {
+      let getdata = await axios.get(`${env.api}/allworkout`, {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
       });
-      console.log(getdata);
+      
       setWorkout([...getdata.data]);
       setLoading(false);
     } catch (error) {
@@ -71,20 +71,20 @@ function Workout_done() {
                 {
                 activity = Workout[x].catg;
                 calories = (Workout[x].calories*values.time);
-                console.log(calories);}
+                }
              }
              values.calories=calories;
              values.activity =activity ;
              values.date=new Date().toLocaleDateString();
-              console.log(values);
+              
               try {
-                let postData = await axios.post(`http://localhost:3001/createData`, { message: values },{
+                let postData = await axios.post(`${env.api}/createData`, { message: values },{
                 headers : {
                   "Authorization" : window.localStorage.getItem("app_token")
                 }
               })
               window.alert("data posted");
-              console.log(values);
+            
               } catch (error) {
                 console.log(error);
                 window.alert("Check your network");

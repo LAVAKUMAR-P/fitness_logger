@@ -6,6 +6,7 @@ import Navbar_login from "./Navbar_login";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
+import env from "./settings";
 
 function Login() {
   const validate = Yup.object({
@@ -31,13 +32,13 @@ function Login() {
             onSubmit={async (values) => {
               try {
                 let postData = await axios.post(
-                  "http://localhost:3001/login",
+                  `${env.api}/login`,
                   values
                 );
-                console.log(postData);
+                
                 window.localStorage.setItem("app_token", postData.data.token);
                 window.localStorage.setItem("action", postData.data.unconditional);
-                window.alert("jwt token generated");
+                window.alert("Login sucessfull");
                 history.push("/home");
               } catch (error) {
                 console.log("error");
