@@ -1,7 +1,7 @@
 let getSettings = () => {
     return {
-        api : "http://localhost:3001"
-        //api : "https://todonodefirst.herokuapp.com"
+        // api : "http://localhost:3001"
+        api : "https://fitness-logger-one.herokuapp.com"
     }
 }
 
