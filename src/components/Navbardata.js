@@ -10,7 +10,7 @@ export const NavbarData =[
     },
     {
         title : "BMI CALCULATOR",
-        path:"/bmicalc",
+        path:"/workout/bmicalc",
     },
     {
         title : "Workout History",
