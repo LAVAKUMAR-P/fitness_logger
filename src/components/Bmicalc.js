@@ -16,8 +16,8 @@ function Bmicalc() {
 
   const [bmi, setbmi] = useState("");
   const [status, setStatus] = useState("");
-  let bmiResult = null;
-  let bmivalue=null;
+  let bmiResult = 0;
+  let bmivalue="";
   let Newvalue;
 
   const saveValue = async () => {
