@@ -38,6 +38,7 @@ function Resetpassword(props) {
                   `,{
                     password: values.password,
                   })
+                  console.log(data);
                  window.alert("password changed");
                 } catch (error) {
                   if(error.message==="Request failed with status code 409"){
