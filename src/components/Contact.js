@@ -30,9 +30,6 @@ function Contact() {
                 <div>
                 <sapan className="C-icon"><FaIcons.FaQuestionCircle/></sapan> Maybe wanna learn something new or anything to ask?
                 </div>
-                <div>
-                <span className="C-icon"><MdIcons.MdOutlineDeveloperMode/></span> Wanna Collaborate or pitch in for some Fun/Real projects?
-                </div>
                 <div className="C-mail">
                 <div>
                 <SiGmail/> Gmail<br/>
