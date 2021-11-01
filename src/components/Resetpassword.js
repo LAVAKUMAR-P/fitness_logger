@@ -6,6 +6,7 @@ import Navbar_login from "./Navbar_login";
 import axios from "axios";
 import Textfield from "./Textfield";
 import env from "./settings";
+import { useHistory } from "react-router";
 
 
 function Resetpassword(props) {
@@ -18,7 +19,7 @@ function Resetpassword(props) {
       .required("Confirm password is required"),
   });
 
- 
+let history=useHistory();
   
   return (
     <>
@@ -38,8 +39,8 @@ function Resetpassword(props) {
                   `,{
                     password: values.password,
                   })
-                  console.log(data);
                  window.alert("password changed");
+                 history.push("/");
                 } catch (error) {
                   if(error.message==="Request failed with status code 409"){
                     window.alert("Something went wrong");

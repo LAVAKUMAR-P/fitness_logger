@@ -96,7 +96,7 @@ function WorkoutLog() {
               </div>
               <div>
               {Bmi.length === 0 ? (
-                  <Link to={`/bmicalc`}>
+                  <Link to={`/workout/bmicalc`}>
                   <button className="WL-buttons"> <MdCreate/> Create BMI</button>
                   </Link>
                 ) : (

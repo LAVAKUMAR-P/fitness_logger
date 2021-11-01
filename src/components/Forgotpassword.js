@@ -28,7 +28,7 @@ function Forgotpassword() {
                   `${env.api}/forgetpassword`,{email:values.email}
                 );
                 console.log(postData);
-                window.alert("Check yourmail")
+                window.alert("Check your mail")
               } catch (error) {
                 console.log("error");
                 if (error.message === "Request failed with status code 401") {

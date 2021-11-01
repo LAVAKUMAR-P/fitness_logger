@@ -57,7 +57,7 @@ function Register() {
                   history.push("/");
                 } catch (error) {
                   if (error.message === "Request failed with status code 409") {
-                    window.alert("Mailid is alredy redistered");
+                    window.alert("Mailid is already registered");
                     console.log(error);
                   } else {
                     window.alert("check your network");
