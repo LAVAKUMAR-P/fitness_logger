@@ -17,7 +17,7 @@
 .workout_Container{
     margin: 10px;
     width:70%;
-    background-color: rgb(41, 68, 219);
+    background-color: rgba(49, 49, 235, 0.774);
     padding: 1em;
     border-radius: 20px;
     padding-bottom: 0.5em;
@@ -57,7 +57,7 @@
     .workout_Container{
         margin: 10px;
         width:90%;
-        background-color: rgb(41, 68, 219);
+        background-color: rgba(49, 49, 235, 0.774);
         padding: 1em;
         border-radius: 20px;
         padding-bottom: 0.5em;
@@ -68,7 +68,7 @@
     .workout_Container{
         margin: 10px;
         width:90%;
-        background-color: rgb(41, 68, 219);
+        background-color: rgba(49, 49, 235, 0.774);
         padding: 1em;
         border-radius: 20px;
         padding-bottom: 0.5em;
