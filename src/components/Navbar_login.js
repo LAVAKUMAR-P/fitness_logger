@@ -31,7 +31,7 @@ export default function Navbar_login() {
 
   return (
     <nav>
-        <img src={Logo} alt="image"/>
+       <Link to="/"><img src={Logo} alt="image"/></Link>
       {(toggleMenu || screenWidth > 541) && (
       <ul className="list">
         {

@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <img src={Logo} alt="image"/>
+      <Link to="/home"><img src={Logo} alt="image"/></Link>
       {(toggleMenu || screenWidth > 541) && (
       <ul className="list">
         {
