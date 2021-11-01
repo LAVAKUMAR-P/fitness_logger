@@ -92,6 +92,8 @@ function Home() {
                 <br />
                 &#128522; By following below data in cards you can do your work
                 out and save that values
+                <br />
+                &#128522; One Card is considered as one set 
               </div>
   
             <div className="H-gird">

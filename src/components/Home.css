@@ -10,7 +10,6 @@
     background-repeat: no-repeat;
     background-size: cover !important;
     background-blend-mode: darken;
-    height: 100vh;
     padding-bottom: 2em;
     color: #fff;
   }
@@ -21,7 +20,7 @@
     display: flex;
     
     justify-content: flex-end;
-
+   
 }
 
 /*container at top*/
@@ -44,6 +43,7 @@
 .H-content-position{
    display: grid;
    place-items: center;
+   
 }
 
 .H-overallcontent{

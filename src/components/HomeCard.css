@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto+Condensed&display=swap');
+
 /*css for card*/
 .Card-container{
     padding: 1em;
@@ -5,7 +7,10 @@
     color: #fff;
     margin: 1em;
     border-radius: 20px;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    line-height: 1em;
+    font-family: 'Merriweather', serif;
+    
 }
 
 @media screen and (min-device-width: 270px) and (max-device-width: 768px) {
@@ -16,6 +21,7 @@
         margin: 2px;
         border-radius: 20px;
         font-size: 1.2em;
+        font-family: 'Merriweather', serif;
     } 
 }
 
@@ -27,6 +33,7 @@
         margin: 2px;
         border-radius: 20px;
         font-size: 1.2em;
+        font-family: 'Merriweather', serif;
     } 
 }
 

@@ -114,15 +114,17 @@ function Edit_Workout_done(props) {
                       </MySelect>
 
                       <Textfield
-                        label="Time spent at activity"
+                        label="Number of sets"
                         name="time"
                         type="number"
+                        placeholder="Enter number of sets eg(1)"
                       />
 
                       <Textfield
                         label="Comments"
                         name="comments"
                         type="comment"
+                        placeholder="Enter any comments you want(optional)"
                       />
                       <button className="WD-buttons" type="submit">
                         Submit

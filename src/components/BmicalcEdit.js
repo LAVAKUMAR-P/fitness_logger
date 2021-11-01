@@ -117,11 +117,13 @@ let history=useHistory();
                       label="Your Height"
                       name="your_height"
                       type="number"
+                      placeholder="Enter your height (cm)"
                     />
                     <Textfield
                       label="Weight"
                       name="your_weight"
                       type="number"
+                      placeholder="Enter your weight (kg)"
                     />
                     <button className="W-buttons" type="submit" to="/workoutlog">
                      Calculate

@@ -7,11 +7,14 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import MySelect from "./FormiclMySelect";
 import env from "./settings";
+import { useHistory } from "react-router";
 
 function Workout_done() {
   useEffect(async() => {
     await fetchData();
   }, []); 
+
+  let history = useHistory();
   
   const [Workout, setWorkout] = useState([]);
 
@@ -86,7 +89,7 @@ function Workout_done() {
                 }
               })
               window.alert("data posted");
-            
+              history.push("/workoutlog");
               } catch (error) {
                 console.log(error);
                 window.alert("Check your network");
@@ -109,15 +112,17 @@ function Workout_done() {
                       }
                     </MySelect>
                     <Textfield
-                      label="Time spent at activity(sets/time)"
+                      label="Number of sets"
                       name="time"
                       type="number"
+                      placeholder="Enter number of sets eg(1)"
                     />
 
                     <Textfield
                       label="Comments"
                       name="comments"
                       type="comment"
+                      placeholder="Enter any comments you want(optional)"
                     />
                     <button className="WD-buttons" type="submit">
                       Submit
