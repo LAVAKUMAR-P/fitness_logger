@@ -7,6 +7,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 import env from "./settings";
+import Bbar from "./Bbar";
 
 
 function Register() {
@@ -75,6 +76,7 @@ function Register() {
                         name="firstName"
                         type="text"
                         placeholder="Enter First Name"
+                        placeholder="Enter your first Name"
                       />
                       <Textfield
                         label="last Name"
@@ -114,6 +116,7 @@ function Register() {
           </div>
         </section>
       </div>
+      <Bbar/>
     </>
   );
 }

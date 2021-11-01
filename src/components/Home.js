@@ -9,6 +9,7 @@ import HomeCard from "./HomeCard";
 import Loading_page from "./Loading_page";
 import axios from "axios";
 import env from "./settings";
+import Bbar from "./Bbar";
 
 function Home() {
   let history = useHistory();
@@ -116,7 +117,7 @@ function Home() {
       </div>
       }
       
-       
+      <Bbar/> 
     </>
   );
 }

@@ -7,6 +7,7 @@ import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 import env from "./settings";
+import Bbar from "./Bbar";
 
 function Login() {
   const validate = Yup.object({
@@ -56,11 +57,12 @@ function Login() {
                   <div className="L-content-position">
                   <div className="L-login-title">Login</div>
                   <Form>
-                    <Textfield label="Email" name="email" type="email" />
+                    <Textfield label="Email" name="email" type="email"   placeholder="Enter your Mail id" />
                     <Textfield
                       label="password"
                       name="password"
                       type="password"
+                      placeholder="Enter your password"
                     />
                       <button className="L-buttons" type="submit">
                         Login
@@ -80,6 +82,7 @@ function Login() {
           </Formik>
         </div>
       </div>
+      <Bbar/>
     </>
   );
 }
