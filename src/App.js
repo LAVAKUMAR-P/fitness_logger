@@ -18,6 +18,7 @@ import Resetpassword from './components/Resetpassword';
 import Workout from './components/Workout';
 import Adminworkout from './components/Adminworkout';
 import EditworkoutA from './components/EditworkourA';
+import Contact from './components/Contact';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
          <Route path="/adminworkoutall" component={Adminworkout} exact={true}/>
          <Route path="/admin" component={Adminusers} exact={true}/>
          <Route path="/workoutlog" component={WorkoutLog} exact={true}/>
+         <Route path="/Contact" component={Contact} exact={true}/>
          <Route path="/forgetpassword" component={Forgotpassword} exact={true}/>
          <Route path="/EditWorkout/:id" component={Edit_Workout_done} exact={true}/>
          <Route path="/workout/bmicalc" component={Bmicalc} exact={true}/>
