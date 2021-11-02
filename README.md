@@ -24,8 +24,8 @@ backend Link Node :https://github.com/LAVAKUMAR-P/fitness_node
 
 Tech Used -(MERN) MongoDB, Express, React JS, Node
 
-front end- React, Html, CSS, JavaScript
-back end-node, express, javascript
+front end- React, Html, CSS, JavaScript<br/>
+back end-node, express, javascript<br/>
 Database - mongoDB</h3>
 
 
