@@ -44,7 +44,7 @@ function Login() {
               } catch (error) {
                 console.log("error");
                 if (error.message === "Request failed with status code 401") {
-                  window.alert("user name or password mismatch");
+                  window.alert("user name or password miss match");
                 } else {
                   window.alert("Check your network");
                 }

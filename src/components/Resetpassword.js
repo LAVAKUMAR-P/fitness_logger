@@ -73,7 +73,7 @@ let history=useHistory();
                         placeholder="Confirm Password"
                       />
                        <button className="R-buttons" type="submit">
-                        Register
+                       Reset 
                       </button>
                       <button className="R-buttons" type="reset">
                         Reset
