@@ -28,7 +28,7 @@ function Contact() {
                 <span className="C-icon"><RiIcons.RiEarthFill/></span> serching developer for your company? I'm currently available for work.
                 </div>
                 <div>
-                <sapan className="C-icon"><FaIcons.FaQuestionCircle/></sapan> Maybe wanna learn something new or anything to ask?
+                <span className="C-icon"><FaIcons.FaQuestionCircle/></span> Maybe wanna learn something new or anything to ask?
                 </div>
                 <div className="C-mail">
                 <div>

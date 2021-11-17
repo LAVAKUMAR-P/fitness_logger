@@ -17,7 +17,7 @@ function Adminusers() {
   const [List, setList] = useState([]);
   let history = useHistory();
   const fileName = "FitnessLog_user_Data";
-
+  const ourRequest = axios.CancelToken.source() ;
   const viewers = List;
 
   
@@ -28,6 +28,7 @@ function Adminusers() {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
+        cancelToken: ourRequest.token,
       });
       setList([...getdata.data]);
       setLoading(false);
@@ -38,7 +39,7 @@ function Adminusers() {
         window.localStorage.removeItem("action");
         window.alert("you are not allowed to come here");
         history.push("/");
-      } else {
+      } else if(error.message !== "REQUEST CANCELED"){
         console.log(error);
         window.alert("Check your network");
       }
@@ -48,6 +49,9 @@ function Adminusers() {
   useEffect(() => {
     fetchData();
     Aos.init({ duration: 1500 });
+    return () => {
+      ourRequest.cancel("REQUEST CANCELED")
+    };
   }, []);
 
   let makeadmin = async (mail) => {

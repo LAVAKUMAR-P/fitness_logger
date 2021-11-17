@@ -10,8 +10,14 @@ import env from "./settings";
 import { useHistory } from "react-router";
 
 function Workout_done() {
-  useEffect(async() => {
-    await fetchData();
+
+  const ourRequest = axios.CancelToken.source() ;
+
+  useEffect(() => {
+     fetchData();
+    return () => {
+      ourRequest.cancel("REQUEST CANCELED")
+    };
   }, []); 
 
   let history = useHistory();
@@ -24,6 +30,7 @@ function Workout_done() {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
+        cancelToken: ourRequest.token,
       });
       
       setWorkout([...getdata.data]);
@@ -34,8 +41,8 @@ function Workout_done() {
         window.localStorage.removeItem("app_token");
         window.localStorage.removeItem("action");
         window.alert("you are not allowed to come here");
-      } else {
-       
+      }
+      else if(error.message !== "REQUEST CANCELED"){
         console.log(error);
         window.alert("Check your network");
       }

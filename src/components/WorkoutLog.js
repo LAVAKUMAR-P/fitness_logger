@@ -13,21 +13,29 @@ function WorkoutLog() {
   const [Loading, setLoading] = useState(true);
   const [List, setList] = useState([]);
   const [Bmi, setBmi] = useState([]);
-  let newweight;
+  const ourRequest = axios.CancelToken.source() ;
+  
   useEffect(() => {
     fetchData();
-    Aos.init({duration:1500})
+    Aos.init({duration:1500});
+    return()=>{
+      ourRequest.cancel("REQUEST CANCELED")
+    }
   }, []);
   let fetchData = async () => {
     try {
       let Data = await axios.get(`${env.api}/getData`, {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
+          cancelToken: ourRequest.token,
         },
       });
+    
+      
       setList([...Data.data.registerSchemas]);
       setBmi([...Data.data.BMIMessages]);
       setLoading(false);
+      
     } catch (error) {
       setLoading(false);
       console.log(error);

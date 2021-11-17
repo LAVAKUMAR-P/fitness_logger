@@ -16,23 +16,20 @@ function Home() {
   const [Loading, setLoading] = useState(true);
   const [Admin, setAdmin] = useState(false);
   const [Workout, setWorkout] = useState([]);
-
-  useEffect(() => {
-    let admin =window.localStorage.getItem("action");
-    setAdmin(admin);
-    fetchData();
-    
-  }, []);
+  const ourRequest = axios.CancelToken.source() ;
+ 
 
 
   let fetchData = async () => {
+    
     try {
+     
       let getdata = await axios.get(`${env.api}/allworkout`, {
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },
+        cancelToken: ourRequest.token,
       });
-    
       setWorkout([...getdata.data]);
       setLoading(false);
     } catch (error) {
@@ -44,11 +41,22 @@ function Home() {
         history.push("/");
       } else {
         setLoading(false);
-        console.log(error);
-        window.alert("Check your network");
+        if(error.message !=="REQUEST CANCELED"){
+          console.log(error);
+          window.alert("Check your network");
+        }
       }
     }
   };
+
+  useEffect(() => {
+    let admin =window.localStorage.getItem("action");
+    setAdmin(admin);
+    fetchData();
+    return () => {
+      ourRequest.cancel("REQUEST CANCELED")
+    };
+  }, []);
 
   let Logout = async () => {
     try {
@@ -59,7 +67,8 @@ function Home() {
         history.push("/");
       }
     } catch (error) {
-      window.alert("some thing went wrong try again");
+  
+        window.alert("some thing went wrong try again");
     }
   };
 
