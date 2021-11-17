@@ -19,6 +19,8 @@ Login, Register page & forget password page available(reset password link sent t
 Loading page available
 
 working pictures Link-https://drive.google.com/drive/folders/1ZgXAOMNtgiKO-Y933mqX-3AOoVhOKBQA?usp=sharing
+Working Video Link-https://drive.google.com/file/d/1blgoAqc8uNnY5v7nBLM7RdQe-2do-JKO/view?usp=sharing
+  
 <h5 style={colour:red;}>backend Link Node :https://github.com/LAVAKUMAR-P/fitness_node</h5>
 
 Tech Used -(MERN) MongoDB, Express, React JS, Node
