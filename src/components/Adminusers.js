@@ -95,7 +95,7 @@ function Adminusers() {
             },
           }
         );
-        await fetchData();
+       fetchData();
         window.alert("Chaned to user sucessfully!......");
       } else {
         window.alert("Don't worry you sucessfully canceled remove admin......");
